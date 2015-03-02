@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
+		1DB4138E1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
 		1DCF98FF1AA4278D00C2EFF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF98FE1AA4278D00C2EFF0 /* AppDelegate.swift */; };
 		1DCF99061AA4278D00C2EFF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DCF99051AA4278D00C2EFF0 /* Images.xcassets */; };
 		1DCF99151AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF99141AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift */; };
@@ -31,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1DCF98F91AA4278D00C2EFF0 /* 103 - swiftWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "103 - swiftWeibo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF98FD1AA4278D00C2EFF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DCF98FE1AA4278D00C2EFF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 		1DCF99201AA4295600C2EFF0 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -333,6 +337,7 @@
 			files = (
 				1DCF992C1AA429D100C2EFF0 /* OAuthViewController.swift in Sources */,
 				1DCF99391AA42AB200C2EFF0 /* SVProgressHUD.m in Sources */,
+				1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */,
 				1DCF98FF1AA4278D00C2EFF0 /* AppDelegate.swift in Sources */,
 				1DCF99371AA42AB200C2EFF0 /* SVIndefiniteAnimatedView.m in Sources */,
 			);
@@ -342,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DB4138E1AA4B3C20031A34F /* NetworkManager.swift in Sources */,
 				1DCF993C1AA42D9E00C2EFF0 /* OAuthViewControllerTests.swift in Sources */,
 				1DCF993D1AA42DD000C2EFF0 /* OAuthViewController.swift in Sources */,
 				1DCF99151AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift in Sources */,
@@ -517,6 +523,7 @@
 				1DCF991A1AA4278E00C2EFF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1DCF991B1AA4278E00C2EFF0 /* Build configuration list for PBXNativeTarget "103 - swiftWeiboTests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +532,7 @@
 				1DCF991D1AA4278E00C2EFF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

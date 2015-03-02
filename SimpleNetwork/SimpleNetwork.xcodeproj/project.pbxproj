@@ -10,7 +10,8 @@
 		1D03C0511AA443540041DAAB /* SimpleNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D03C0501AA443540041DAAB /* SimpleNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D03C0571AA443540041DAAB /* SimpleNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D03C04B1AA443540041DAAB /* SimpleNetwork.framework */; };
 		1D03C05E1AA443540041DAAB /* SimpleNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D03C05D1AA443540041DAAB /* SimpleNetworkTests.swift */; };
-		1D03C0691AA443A50041DAAB /* SimpleNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D03C0681AA443A50041DAAB /* SimpleNetwork.swift */; };
+		1D03C06F1AA4742C0041DAAB /* SimpleNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D03C06E1AA4742C0041DAAB /* SimpleNetwork.swift */; };
+		1D03C0701AA479790041DAAB /* SimpleNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D03C06E1AA4742C0041DAAB /* SimpleNetwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +31,7 @@
 		1D03C0561AA443540041DAAB /* SimpleNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D03C05C1AA443540041DAAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D03C05D1AA443540041DAAB /* SimpleNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNetworkTests.swift; sourceTree = "<group>"; };
-		1D03C0681AA443A50041DAAB /* SimpleNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleNetwork.swift; path = "../../../../../../03天-Workspace&网络框架/代码/HMWeibo04/SimpleNetwork/Sources/SimpleNetwork.swift"; sourceTree = "<group>"; };
+		1D03C06E1AA4742C0041DAAB /* SimpleNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleNetwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +74,7 @@
 		1D03C04D1AA443540041DAAB /* SimpleNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				1D03C0671AA4438E0041DAAB /* Sources */,
+				1D03C06D1AA4742C0041DAAB /* Sources */,
 				1D03C0501AA443540041DAAB /* SimpleNetwork.h */,
 				1D03C04E1AA443540041DAAB /* Supporting Files */,
 			);
@@ -105,10 +106,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1D03C0671AA4438E0041DAAB /* Sources */ = {
+		1D03C06D1AA4742C0041DAAB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1D03C0681AA443A50041DAAB /* SimpleNetwork.swift */,
+				1D03C06E1AA4742C0041DAAB /* SimpleNetwork.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -220,7 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D03C0691AA443A50041DAAB /* SimpleNetwork.swift in Sources */,
+				1D03C06F1AA4742C0041DAAB /* SimpleNetwork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D03C0701AA479790041DAAB /* SimpleNetwork.swift in Sources */,
 				1D03C05E1AA443540041DAAB /* SimpleNetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +416,7 @@
 				1D03C0631AA443540041DAAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D03C0641AA443540041DAAB /* Build configuration list for PBXNativeTarget "SimpleNetworkTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +425,7 @@
 				1D03C0661AA443540041DAAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

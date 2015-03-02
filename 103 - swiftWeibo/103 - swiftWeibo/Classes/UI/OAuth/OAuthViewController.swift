@@ -10,8 +10,12 @@ import UIKit
 
 class OAuthViewController: UIViewController {
 
-    let WB_API_URL_String = "https://api.weibo.com"
-    let WB_Redirect_URL_String = "http://www.baidu.com"
+    
+    let WB_API_URL_String       = "https://api.weibo.com"
+    let WB_Redirect_URL_String  = "http://www.baidu.com"
+    let WB_Client_ID            = "258115387"
+    let WB_Client_Secret        = "e6bc5950db8f4a041f09bd6ebeca8ec9"
+    let WB_Grant_Type           = "authorization_code"
     
     @IBOutlet weak var webView: UIWebView!
 
@@ -54,22 +58,32 @@ extension OAuthViewController: UIWebViewDelegate {
         if let code = result.code {
             println("可以换 accesstoke \(code)")
  
-//            let params = ["client_id": "2720451414",
-//            "client_secret": "e061ff9a264a0bedb55226685b34c084",
-//            "grant_type": "authorization_code",
-//            "redirect_uri": WB_Redirect_URL_String,
-//            "code": code]
-//            
+            let params = ["client_id": WB_Client_ID,
+            "client_secret": WB_Client_Secret,
+            "grant_type":WB_Grant_Type,
+            "redirect_uri": WB_Redirect_URL_String,
+            "code": code]
+//
 //            NetworkManager.sharedManager.requestJSON(method: .POST, urlString: "https://api.weibo.com/oauth2/access_token", parameters: params, result: { (json) -> () in
 //                println(json)
 //            })
+            
+            let net = NetworkManager.sharedManager
+            net.requestJSON(.POST, "https://api.weibo.com/oauth2/access_token", params, completion: { (result, error) -> () in
+                println(result)
+            })
+            
         }
         if !result.load {
-            println("不加载!")
-            SVProgressHUD.showInfoWithStatus("不加载")
+            println(request.URL)
+//            SVProgressHUD.showInfoWithStatus("不加载")
             // 如果不加载页面，需要重新刷新授权页面
             // TODO: 有可能会出现多次加载页面，不过现在貌似正常！
-//            loadAuthPage()
+           
+            if result.reloadPage{
+                SVProgressHUD.showInfoWithStatus("真的要取消么", maskType: SVProgressHUDMaskType.Black)
+                loadAuthPage()
+            }
         }
         
         return result.load
@@ -77,7 +91,7 @@ extension OAuthViewController: UIWebViewDelegate {
     
     /// 根据 URL 判断是否继续加载页面
     /// 返回：是否加载，如果有 code，同时返回 code，否则返回 nil
-    func continueWithCode(url: NSURL) -> (load: Bool, code: String?) {
+    func continueWithCode(url: NSURL) -> (load: Bool, code: String?, reloadPage: Bool) {
         
         // 1. 将url转换成字符串
         let urlString = url.absoluteString!
@@ -91,14 +105,16 @@ extension OAuthViewController: UIWebViewDelegate {
                     
                     if query.hasPrefix(codestr as String) {
                         var q = query as NSString!
-                        return (false, q.substringFromIndex(codestr.length))
+                        return (false, q.substringFromIndex(codestr.length),false)
+                    }else {
+                        return (false, nil, true)
                     }
                 }
             }
             
-            return (false, nil)
+            return (false, nil,false)
         }
         
-        return (true, nil)
+        return (true, nil,false)
     }
 }
