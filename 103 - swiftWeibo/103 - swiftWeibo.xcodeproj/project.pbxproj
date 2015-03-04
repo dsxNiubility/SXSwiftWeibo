@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
+		1D6175561AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
 		1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
 		1DB4138E1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
+		1DB4C9ED1AA6B2A500CA4B38 /* AccessTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4C9EC1AA6B2A500CA4B38 /* AccessTokenTests.swift */; };
 		1DCF98FF1AA4278D00C2EFF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF98FE1AA4278D00C2EFF0 /* AppDelegate.swift */; };
 		1DCF99061AA4278D00C2EFF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DCF99051AA4278D00C2EFF0 /* Images.xcassets */; };
 		1DCF99151AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF99141AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift */; };
@@ -33,7 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		1DB4C9EC1AA6B2A500CA4B38 /* AccessTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenTests.swift; sourceTree = "<group>"; };
 		1DCF98F91AA4278D00C2EFF0 /* 103 - swiftWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "103 - swiftWeibo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF98FD1AA4278D00C2EFF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DCF98FE1AA4278D00C2EFF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +121,7 @@
 			children = (
 				1DCF99141AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift */,
 				1DCF993B1AA42D9E00C2EFF0 /* OAuthViewControllerTests.swift */,
+				1DB4C9EC1AA6B2A500CA4B38 /* AccessTokenTests.swift */,
 				1DCF99121AA4278E00C2EFF0 /* Supporting Files */,
 			);
 			path = "103 - swiftWeiboTests";
@@ -143,6 +149,7 @@
 		1DCF991F1AA4295600C2EFF0 /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
+				1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */,
 			);
 			path = BusinessModel;
 			sourceTree = "<group>";
@@ -340,6 +347,7 @@
 				1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */,
 				1DCF98FF1AA4278D00C2EFF0 /* AppDelegate.swift in Sources */,
 				1DCF99371AA42AB200C2EFF0 /* SVIndefiniteAnimatedView.m in Sources */,
+				1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,9 +356,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DB4138E1AA4B3C20031A34F /* NetworkManager.swift in Sources */,
+				1DB4C9ED1AA6B2A500CA4B38 /* AccessTokenTests.swift in Sources */,
 				1DCF993C1AA42D9E00C2EFF0 /* OAuthViewControllerTests.swift in Sources */,
 				1DCF993D1AA42DD000C2EFF0 /* OAuthViewController.swift in Sources */,
 				1DCF99151AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift in Sources */,
+				1D6175561AA5DC1B00AD0A64 /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

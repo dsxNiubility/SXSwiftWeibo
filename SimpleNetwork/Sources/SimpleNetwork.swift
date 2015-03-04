@@ -45,7 +45,9 @@ static let errorDomain = "com.dsxlocal.error"
         // 实例化
         if let request = request(method, urlString, params){
             
+            
             session!.dataTaskWithRequest(request, completionHandler: { (data, _, error) -> Void in
+                
                 
                 // 如果有错误，直接回调，将错误返回
                 if error != nil{
@@ -105,6 +107,7 @@ static let errorDomain = "com.dsxlocal.error"
                 // MARK:- 先哥
                 req!.HTTPMethod = method.rawValue
                 
+                // lossy 是否允许松散的转换，无所谓的
                 req!.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
             
             }
