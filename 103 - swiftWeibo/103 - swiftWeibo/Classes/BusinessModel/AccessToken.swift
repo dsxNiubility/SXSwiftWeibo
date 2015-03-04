@@ -55,7 +55,7 @@ class AccessToken:NSObject,NSCoding{
     /// 返回保存的沙盒路径
     class func tokenPath() -> String {
         var path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last as!String
-        path = path.stringByAppendingPathComponent("WBToken.plist")
+        path = path.stringByAppendingPathComponent("SXWeiboToken.plist")
         
         return path
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftJ2M
 
 class OAuthViewController: UIViewController {
 
@@ -21,7 +22,7 @@ class OAuthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         loadAuthPage()
     }
     
