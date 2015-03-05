@@ -17,10 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let net = SimpleNetwork()
-        net.demo()
+        /// 关于accessToken
         
+        /// 添加导航栏主题
+        setNavAppeareance()
         return true
+    }
+    
+    func setNavAppeareance(){
+        UINavigationBar.appearance().tintColor = UIColor.orangeColor()
     }
 
 }

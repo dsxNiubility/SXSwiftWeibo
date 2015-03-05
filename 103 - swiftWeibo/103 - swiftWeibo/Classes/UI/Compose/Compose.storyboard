@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wgs-p5-V1X">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+    </dependencies>
+    <scenes>
+        <!--撰写微博-->
+        <scene sceneID="twW-7r-Ul2">
+            <objects>
+                <viewController id="Dwk-qh-NpL" customClass="SXComposeViewController" customModule="_03___swiftWeibo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vul-mO-bj9"/>
+                        <viewControllerLayoutGuide type="bottom" id="OTc-M4-6bD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v0i-Zi-0Io">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="撰写微博" id="4Rl-9I-lQu">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="uYz-2u-3fe">
+                            <connections>
+                                <action selector="cancelBtnClick:" destination="Dwk-qh-NpL" id="TyW-mj-GXZ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="发送" id="DDq-DE-FOM">
+                            <connections>
+                                <action selector="sendBtnClick:" destination="Dwk-qh-NpL" id="2ht-L8-WXD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ab8-X3-Uee" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1309" y="413"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mUs-cg-Hug">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wgs-p5-V1X" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7DH-vh-4a1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Dwk-qh-NpL" kind="relationship" relationship="rootViewController" id="kWe-Rb-H5b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g5C-Nr-EC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="360" y="691"/>
+        </scene>
+    </scenes>
+</document>
