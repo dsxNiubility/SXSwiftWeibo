@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SwiftJ2M/SwiftJ2M.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:SimpleNetwork/SimpleNetwork.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:103 - swiftWeibo/103 - swiftWeibo.xcodeproj">
    </FileRef>
 </Workspace>

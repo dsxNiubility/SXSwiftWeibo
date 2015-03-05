@@ -7,6 +7,7 @@
 //  Copyright (c) 2015年 shangxianDante. All rights reserved.
 //
 
+#import <CommonCrypto/CommonCrypto.h>
 #import "SVProgressHUD.h"
 
 #ifndef _03___swiftWeibo_SwiftWeiboTests_Bridge_h

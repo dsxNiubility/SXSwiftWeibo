@@ -8,7 +8,6 @@
 //
 
 import Foundation
-import SimpleNetwork
 
 class NetworkManager {
     

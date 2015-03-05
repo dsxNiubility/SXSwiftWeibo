@@ -44,7 +44,7 @@ class SXMainTabBar: UITabBar {
                 if index == 2 {
                     index++
                 }
-                println(index)
+//                println(index)
             }
         }
         composeBtn!.frame = CGRectMake(0, 0, w, h)

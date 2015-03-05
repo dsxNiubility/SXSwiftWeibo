@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D1B59091AA8957E002B3AAD /* String+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD261D1AA8846200C90E5A /* String+Hash.swift */; };
 		1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
 		1D6175561AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
 		1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
@@ -25,6 +26,13 @@
 		1DBD260B1AA8270800C90E5A /* SXMainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD260A1AA8270800C90E5A /* SXMainTabBar.swift */; };
 		1DBD260E1AA86F1400C90E5A /* SXComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD260D1AA86F1400C90E5A /* SXComposeViewController.swift */; };
 		1DBD26101AA86F3600C90E5A /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DBD260F1AA86F3600C90E5A /* Compose.storyboard */; };
+		1DBD26141AA875BC00C90E5A /* SimpleNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD26131AA875BC00C90E5A /* SimpleNetwork.swift */; };
+		1DBD26161AA8760C00C90E5A /* SXSwiftJ2M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD26151AA8760C00C90E5A /* SXSwiftJ2M.swift */; };
+		1DBD26171AA8775B00C90E5A /* SimpleNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD26131AA875BC00C90E5A /* SimpleNetwork.swift */; };
+		1DBD26181AA8775E00C90E5A /* SXSwiftJ2M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD26151AA8760C00C90E5A /* SXSwiftJ2M.swift */; };
+		1DBD261B1AA877D400C90E5A /* StatusesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD26191AA877D400C90E5A /* StatusesData.swift */; };
+		1DBD261C1AA877D400C90E5A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD261A1AA877D400C90E5A /* UserInfo.swift */; };
+		1DBD261E1AA8846200C90E5A /* String+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD261D1AA8846200C90E5A /* String+Hash.swift */; };
 		1DCF98FF1AA4278D00C2EFF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF98FE1AA4278D00C2EFF0 /* AppDelegate.swift */; };
 		1DCF99061AA4278D00C2EFF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DCF99051AA4278D00C2EFF0 /* Images.xcassets */; };
 		1DCF99151AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF99141AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift */; };
@@ -65,6 +73,11 @@
 		1DBD260A1AA8270800C90E5A /* SXMainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXMainTabBar.swift; sourceTree = "<group>"; };
 		1DBD260D1AA86F1400C90E5A /* SXComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXComposeViewController.swift; sourceTree = "<group>"; };
 		1DBD260F1AA86F3600C90E5A /* Compose.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
+		1DBD26131AA875BC00C90E5A /* SimpleNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleNetwork.swift; sourceTree = "<group>"; };
+		1DBD26151AA8760C00C90E5A /* SXSwiftJ2M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXSwiftJ2M.swift; sourceTree = "<group>"; };
+		1DBD26191AA877D400C90E5A /* StatusesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesData.swift; sourceTree = "<group>"; };
+		1DBD261A1AA877D400C90E5A /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		1DBD261D1AA8846200C90E5A /* String+Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Hash.swift"; sourceTree = "<group>"; };
 		1DCF98F91AA4278D00C2EFF0 /* 103 - swiftWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "103 - swiftWeibo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF98FD1AA4278D00C2EFF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DCF98FE1AA4278D00C2EFF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +197,8 @@
 		1DCF991F1AA4295600C2EFF0 /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
+				1DBD26191AA877D400C90E5A /* StatusesData.swift */,
+				1DBD261A1AA877D400C90E5A /* UserInfo.swift */,
 				1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */,
 			);
 			path = BusinessModel;
@@ -192,6 +207,9 @@
 		1DCF99201AA4295600C2EFF0 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				1DBD261D1AA8846200C90E5A /* String+Hash.swift */,
+				1DBD26151AA8760C00C90E5A /* SXSwiftJ2M.swift */,
+				1DBD26131AA875BC00C90E5A /* SimpleNetwork.swift */,
 				1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */,
 			);
 			path = Tools;
@@ -397,10 +415,15 @@
 			files = (
 				1DBD25FF1AA821DC00C90E5A /* SXProfileViewController.swift in Sources */,
 				1DBD260E1AA86F1400C90E5A /* SXComposeViewController.swift in Sources */,
+				1DBD261E1AA8846200C90E5A /* String+Hash.swift in Sources */,
 				1DBD25F91AA8219A00C90E5A /* SXHomeViewController.swift in Sources */,
+				1DBD261B1AA877D400C90E5A /* StatusesData.swift in Sources */,
 				1DCF992C1AA429D100C2EFF0 /* OAuthViewController.swift in Sources */,
+				1DBD261C1AA877D400C90E5A /* UserInfo.swift in Sources */,
 				1DCF99391AA42AB200C2EFF0 /* SVProgressHUD.m in Sources */,
 				1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */,
+				1DBD26161AA8760C00C90E5A /* SXSwiftJ2M.swift in Sources */,
+				1DBD26141AA875BC00C90E5A /* SimpleNetwork.swift in Sources */,
 				1DCF98FF1AA4278D00C2EFF0 /* AppDelegate.swift in Sources */,
 				1DCF99371AA42AB200C2EFF0 /* SVIndefiniteAnimatedView.m in Sources */,
 				1DBD25FB1AA821B200C90E5A /* SXDiscoverViewController.swift in Sources */,
@@ -417,8 +440,11 @@
 			files = (
 				1DB4138E1AA4B3C20031A34F /* NetworkManager.swift in Sources */,
 				1DB4C9ED1AA6B2A500CA4B38 /* AccessTokenTests.swift in Sources */,
+				1D1B59091AA8957E002B3AAD /* String+Hash.swift in Sources */,
 				1DCF993C1AA42D9E00C2EFF0 /* OAuthViewControllerTests.swift in Sources */,
 				1DCF993D1AA42DD000C2EFF0 /* OAuthViewController.swift in Sources */,
+				1DBD26181AA8775E00C90E5A /* SXSwiftJ2M.swift in Sources */,
+				1DBD26171AA8775B00C90E5A /* SimpleNetwork.swift in Sources */,
 				1DCF99151AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift in Sources */,
 				1D6175561AA5DC1B00AD0A64 /* AccessToken.swift in Sources */,
 			);
