@@ -9,6 +9,9 @@
 import UIKit
 import SwiftJ2M
 
+// 定义全局常量
+let WB_Login_Successed_Notification = "WB_Login_Successed_Notification"
+
 class OAuthViewController: UIViewController {
 
     
@@ -71,6 +74,9 @@ extension OAuthViewController: UIWebViewDelegate {
                 
                 let token = AccessToken(dict: result as! NSDictionary)
                 token.saveAccessToken()
+                
+                // 切换UI - 通知
+                NSNotificationCenter.defaultCenter().postNotificationName(WB_Login_Successed_Notification, object: nil)
                 
             }
             

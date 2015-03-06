@@ -21,22 +21,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let token = AccessToken.loadAccessToken() {
             println(token)
             println(token.uid)
+            
+            showMainInterface()
+        }else{
+            // 添加通知监听，监听用户登录成功
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "showMainInterface", name: WB_Login_Successed_Notification, object: nil)
         }
         
-        let net = SimpleNetwork()
+        return true
+    }
+    
+    func showMainInterface(){
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: WB_Login_Successed_Notification, object: nil)
         
-        let urls = ["http://ww1.sinaimg.cn/thumbnail/62c13fbagw1epuww0k4xgj20c8552b29.jpg",
-            "http://ww3.sinaimg.cn/thumbnail/e362b134jw1epuxb47zoyj20dw0ku421.jpg",
-            "http://ww1.sinaimg.cn/thumbnail/e362b134jw1epuxbaym1sj20ku0dwgpu.jpg",
-            "http://ww2.sinaimg.cn/thumbnail/e362b134jw1epuxbdhirmj20dw0kuae8.jpg"]
-        
-        net.downloadImages(urls, { (result, error) -> () in
-            println("下载完毕")
-        })
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        window!.rootViewController = (sb.instantiateInitialViewController() as!UIViewController)
         
         /// 添加导航栏主题
         setNavAppeareance()
-        return true
     }
     
     func setNavAppeareance(){
