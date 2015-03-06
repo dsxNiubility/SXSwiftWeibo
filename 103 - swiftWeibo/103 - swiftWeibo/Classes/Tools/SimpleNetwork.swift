@@ -9,27 +9,41 @@
 import Foundation
 
 ///  常用的网络访问方法
-public enum HTTPMethod: String {
+ enum HTTPMethod: String {
     case GET = "GET"
     case POST = "POST"
 }
 
-public class SimpleNetwork {
+ class SimpleNetwork {
 
-//    func demo() {
-//        requestJSON(.GET, "", params: nil) { (result, error) -> () in
-//            
-//        }
-//    }
-    public func demo(){
-        println("demo")
-    }
+
     
-//    func requestJSON(method: HTTPMethod, _ urlString: String, params: [String: String]?, completion:((result: AnyObject?, error: NSError?) -> ())) {
-//        
-//    }
     // 定义闭包类型，类型别名－> 首字母一定要大写
-    public typealias Completion = (result: AnyObject?, error: NSError?) -> ()
+    typealias Completion = (result: AnyObject?, error: NSError?) -> ()
+    
+    /**
+    异步加载图像
+    
+    :param: urlString  URLstring
+    :param: completion 完成时的回调
+    */
+    func requestImage(urlString:String,_ completion:Completion){
+        downloadImage(urlString) {(result, error) -> () in
+            if error != nil{
+                completion(result: nil, error: error)
+            }
+            else{
+                /// 取到图片保存在沙盒的路径 并搞出来
+                let path = self.fullImageCachePath(urlString)
+                /// 从沙盒加载到内存，这个方法可以在不需要时自动释放
+                var image = UIImage(contentsOfFile: path)
+                
+                dispatch_async(dispatch_get_main_queue()){ () -> Void in
+                    completion(result: image, error: nil)
+                }
+            }
+        }
+    }
     
     /**
     下载多张图片
@@ -89,13 +103,22 @@ public class SimpleNetwork {
             completion(result: nil, error: nil)
             
             }.resume()
+       }else {
+        let error = NSError(domain: SimpleNetwork.errorDomain, code: -1, userInfo: ["error": "无法创建 URL"])
+        completion(result: nil, error: error)
         }
         
     }
     
+    /// 获取完整的URL路径
+    func fullImageCachePath(urlString:String) ->String{
+        var path = urlString.md5
+        return cachePath!.stringByAppendingPathComponent(path)
+    }
+    
 /// MARK: - 完整的图像缓存路径
     /// 完整的图像缓存路径
-    lazy var cachePath:String? = {
+    private lazy var cachePath:String? = {
         var path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last as!String
         path = path.stringByAppendingPathComponent(imageCachePath)
         
@@ -117,8 +140,8 @@ public class SimpleNetwork {
     }()
     
     
-static var imageCachePath = "com.itheima.imagecache"
-static let errorDomain = "com.dsxlocal.error"
+private static var imageCachePath = "com.itheima.imagecache"
+private static let errorDomain = "com.dsxlocal.error"
     
     ///  请求 JSON
     ///
@@ -126,7 +149,7 @@ static let errorDomain = "com.dsxlocal.error"
     ///  :param: urlString  urlString
     ///  :param: params     可选参数字典
     ///  :param: completion 完成回调
-    public func requestJSON(method: HTTPMethod, _ urlString: String, _ params: [String: String]?, completion: Completion) {
+     func requestJSON(method: HTTPMethod, _ urlString: String, _ params: [String: String]?, _ completion: Completion) {
         
         // 实例化
         if let request = request(method, urlString, params){
@@ -168,7 +191,7 @@ static let errorDomain = "com.dsxlocal.error"
     ///  :param: params    可选参数字典
     ///
     ///  :returns: 可选网络请求
-    func request(method:HTTPMethod, _ urlString: String, _ params:[String:String]?) ->NSURLRequest?{
+   private func request(method:HTTPMethod, _ urlString: String, _ params:[String:String]?) ->NSURLRequest?{
         
         if urlString.isEmpty{
             return nil
@@ -207,7 +230,7 @@ static let errorDomain = "com.dsxlocal.error"
     ///  :param: params 可选字典
     ///
     ///  :returns: 拼接完成的字符串
-    func queryString(params: [String: String]?) -> String? {
+   private func queryString(params: [String: String]?) -> String? {
         
         // 0. 判断参数
         if params == nil {
@@ -227,9 +250,9 @@ static let errorDomain = "com.dsxlocal.error"
     }
     
     ///  公共的初始化函数，外部就能够调用了
-    public init() {}
+    init() {}
     
-    lazy var session:NSURLSession? = {
+   private lazy var session:NSURLSession? = {
         return NSURLSession.sharedSession()
     }()
 }

@@ -64,27 +64,19 @@ extension OAuthViewController: UIWebViewDelegate {
             "grant_type":WB_Grant_Type,
             "redirect_uri": WB_Redirect_URL_String,
             "code": code]
-//
-//            NetworkManager.sharedManager.requestJSON(method: .POST, urlString: "https://api.weibo.com/oauth2/access_token", parameters: params, result: { (json) -> () in
-//                println(json)
-//            })
             
             let net = NetworkManager.sharedManager
-            net.requestJSON(.POST, "https://api.weibo.com/oauth2/access_token", params, completion: { (result, error) -> () in
+            net.requestJSON(.POST, "https://api.weibo.com/oauth2/access_token", params) { (result, error) -> () in
                 println(result)
                 
                 let token = AccessToken(dict: result as! NSDictionary)
                 token.saveAccessToken()
                 
-                
-            })
+            }
             
         }
         if !result.load {
             println(request.URL)
-//            SVProgressHUD.showInfoWithStatus("不加载")
-            // 如果不加载页面，需要重新刷新授权页面
-            // TODO: 有可能会出现多次加载页面，不过现在貌似正常！
            
             if result.reloadPage{
                 SVProgressHUD.showInfoWithStatus("真的要取消么", maskType: SVProgressHUDMaskType.Black)
