@@ -51,9 +51,49 @@ class StatusesData: NSObject, J2MProtocol {
                 var modelTools = SXSwiftJ2M.sharedManager
                 var data = modelTools.swiftObjWithDict(result as! NSDictionary, cls: StatusesData.self) as? StatusesData
                 
-                // 回调 -> 将模型通知给视图控制器
-                completion(data: data, error: nil)
+                // 如果有下载图像的 url，就先下载图像
+                if let urls = StatusesData.pictureURLs(data?.statuses) {
+                    net.downloadImages(urls) { (_, _) -> () in
+                        // 回调通知视图控制器刷新数据
+                        completion(data: data, error: nil)
+                    }
+                } else {
+                    // 如果没有要下载的图像，直接回调 -> 将模型通知给视图控制器
+                    completion(data: data, error: nil)
+                }
+
             }
+        }
+    }
+    
+    ///  取出给定的微博数据中所有图片的 URL 数组
+    ///
+    ///  :param: statuses 微博数据数组，可以为空
+    ///
+    ///  :returns: 微博数组中的 url 完整数组，可以为空
+    class func pictureURLs(statuses: [Status]?) -> [String]? {
+        
+        // 如果数据为空直接返回
+        if statuses == nil {
+            return nil
+        }
+        
+        // 遍历数组
+        var list = [String]()
+        
+        for status in statuses! {
+            // 继续遍历 pic_urls
+            if let urls = status.pictureUrls {
+                for pic in urls {
+                    list.append(pic.thumbnail_pic!)
+                }
+            }
+        }
+        
+        if list.count > 0 {
+            return list
+        } else {
+            return nil
         }
     }
 }
@@ -76,6 +116,18 @@ class Status: NSObject, J2MProtocol {
     var attitudes_count: Int = 0
     ///  配图数组
     var pic_urls: [StatusPictureURL]?
+    
+    /// 要显示的配图数组
+    /// 如果是原创微博，就使用 pic_urls
+    /// 如果是转发微博，使用 retweeted_status.pic_urls
+    var pictureUrls: [StatusPictureURL]? {
+        if retweeted_status != nil {
+            return retweeted_status?.pic_urls
+        } else {
+            return pic_urls
+        }
+    }
+    
     /// 用户信息
     var user: UserInfo?
     /// 转发微博

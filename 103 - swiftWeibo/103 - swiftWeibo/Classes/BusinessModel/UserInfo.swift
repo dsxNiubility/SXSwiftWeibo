@@ -26,7 +26,34 @@ class UserInfo: NSObject {
     ///  是否是微博认证用户，即加V用户，true：是，false：否
     var verified: Bool = false
     ///  认证类型 -1：没有认证，0，认证用户，2,3,5: 企业认证，220: 草根明星
-    var verified_type: Int = -1
+    var verified_type: Int = -1{
+        didSet {
+            switch verified_type {
+            case 0:     // 大V
+                verifiedImage = UIImage(named: "avatar_vip")
+            case 2,3,5: // 企业认证
+                verifiedImage = UIImage(named: "avatar_enterprise_vip")
+            case 220:   // 达人
+                verifiedImage = UIImage(named: "avatar_grassroot")
+            default:
+                verifiedImage = nil
+            }
+        }
+    }
+    
+    ///  认证图标
+    var verifiedImage: UIImage?
+    
     ///  会员等级 0~6
-    var mbrank: Int = 0
+    var mbrank: Int = 0{
+        didSet {
+            if mbrank > 0 && mbrank < 7 {
+                mbImage = UIImage(named: "common_icon_membership_level\(mbrank)")
+            }else {
+                mbImage = nil
+            }
+        }
+    }
+    
+    var mbImage:UIImage?
 }

@@ -83,7 +83,7 @@ import Foundation
         path = cachePath!.stringByAppendingPathComponent(path)
         
         if NSFileManager.defaultManager().fileExistsAtPath(path){
-            println("\(urlString) 图片已经被缓存")
+//            println("\(urlString) 图片已经被缓存")
             completion(result: nil, error: nil)
             return
         }

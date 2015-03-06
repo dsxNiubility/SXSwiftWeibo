@@ -10,6 +10,8 @@ import UIKit
 
 class SXHomeViewController: UITableViewController {
 
+    var height:CGFloat?
+    var indexNo:NSInteger?
     
     var statusData: StatusesData?
     override func viewDidLoad() {
@@ -20,8 +22,8 @@ class SXHomeViewController: UITableViewController {
     
     func loadData(){
         println("加载数据")
+        SVProgressHUD.show()
         StatusesData.loadStatus { (data, error) -> () in
-            SVProgressHUD.show()
             if error != nil{
                 println(error)
                 SVProgressHUD.showInfoWithStatus("网络繁忙请重试")
@@ -33,10 +35,20 @@ class SXHomeViewController: UITableViewController {
             }
         }
     }
+}
+
+extension SXHomeViewController:UITableViewDataSource,UITableViewDelegate{
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+    ///  根据indexPath 返回微博数据&可重用标识符
+    func cellInfo(indexPath: NSIndexPath) -> (status: Status, cellId: String) {
+        let status = self.statusData!.statuses![indexPath.row]
+        let cellId = SXStatusCell.cellIdentifier(status)
+        
+//        println("耗时操作 indexPath \(indexPath.row)  " + __FUNCTION__)
+        
+        return (status, cellId)
     }
+
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.statusData?.statuses?.count ?? 0
@@ -44,14 +56,35 @@ class SXHomeViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell", forIndexPath: indexPath) as! UITableViewCell
+        // 提取cell信息
+        let info = cellInfo(indexPath)
         
-        let status = self.statusData!.statuses![indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(info.cellId, forIndexPath: indexPath) as! SXStatusCell
         
-        cell.textLabel!.text = status.text
+        cell.status = info.status
         
         return cell
     }
     
-
+    // 行高的处理
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if self.indexNo == indexPath.row{
+            return self.height!
+        }
+        
+        // 提取cell信息
+        let info = cellInfo(indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(info.cellId) as! SXStatusCell
+        
+        self.indexNo = indexPath.row
+        self.height =  cell.cellHeight(info.status)
+        return self.height!
+    }
+    
+    // 预估行高，可以提高性能
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 300
+    }
+    
 }
