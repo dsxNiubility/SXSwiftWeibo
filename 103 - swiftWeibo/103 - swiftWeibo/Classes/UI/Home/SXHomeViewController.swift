@@ -14,6 +14,13 @@ class SXHomeViewController: UITableViewController {
     var indexNo:NSInteger?
     
     var statusData: StatusesData?
+    
+    /// 行高缓存
+    lazy var rowHeightCache: NSCache? = {
+        return NSCache()
+        }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +78,7 @@ extension SXHomeViewController:UITableViewDataSource,UITableViewDelegate{
                 
                 let vc = SXPhotoBrowserlViewController.photoBrowserViewController()
                 
-                vc.urls = info.status.largeUrls
+                vc.urls = status.largeUrls
                 vc.selectedIndex = index
                 
                 self.presentViewController(vc, animated: true, completion: nil)
@@ -87,17 +94,22 @@ extension SXHomeViewController:UITableViewDataSource,UITableViewDelegate{
     // 行高的处理
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if self.indexNo == indexPath.row{
-            return self.height!
-        }
-        
         // 提取cell信息
         let info = cellInfo(indexPath)
-        let cell = tableView.dequeueReusableCellWithIdentifier(info.cellId) as! SXStatusCell
-        
-        self.indexNo = indexPath.row
-        self.height =  cell.cellHeight(info.status)
-        return self.height!
+        // 判断是否已经缓存了行高
+        if let h = rowHeightCache?.objectForKey("\(info.status.id)") as? NSNumber {
+//            println("从缓存返回 \(h)")
+            return CGFloat(h.floatValue)
+        } else {
+            println("计算行高 \(__FUNCTION__) \(indexPath)")
+            let cell = tableView.dequeueReusableCellWithIdentifier(info.cellId) as! SXStatusCell
+            let height = cell.cellHeight(info.status)
+            
+            // 将行高添加到缓存 - swift 中向 NSCache/NSArray/NSDictrionary 中添加数值不需要包装
+            rowHeightCache!.setObject(height, forKey: "\(info.status.id)")
+            
+            return cell.cellHeight(info.status)
+        }
     }
     
     // 预估行高，可以提高性能

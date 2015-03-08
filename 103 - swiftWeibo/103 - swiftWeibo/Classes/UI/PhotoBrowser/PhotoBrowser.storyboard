@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fWU-6q-kUw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Photo Browserl View Controller-->
@@ -15,12 +16,59 @@
                     <view key="view" contentMode="scaleToFill" id="Aeb-9x-CYs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ay2-y4-Sd1">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fhk-cg-SWL">
+                                    <size key="itemSize" width="190" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="ceX-pt-ihZ" customClass="PhotoCell" customModule="_03___swiftWeibo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="190" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="fWU-6q-kUw" id="xCs-97-9ms"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azj-p1-9Wi">
+                                <rect key="frame" x="16" y="563" width="30" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="关闭">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="close" destination="fWU-6q-kUw" eventType="touchUpInside" id="Vd9-ji-a6m"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gca-Sk-zEn" firstAttribute="top" secondItem="Azj-p1-9Wi" secondAttribute="bottom" constant="8" id="2nG-4w-JqS"/>
+                            <constraint firstItem="Azj-p1-9Wi" firstAttribute="leading" secondItem="Aeb-9x-CYs" secondAttribute="leadingMargin" id="TnA-j3-khn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ay2-y4-Sd1" secondAttribute="trailing" constant="-16" id="aJy-1h-BmR"/>
+                            <constraint firstItem="ay2-y4-Sd1" firstAttribute="top" secondItem="Aeb-9x-CYs" secondAttribute="topMargin" id="kyc-o0-LCW"/>
+                            <constraint firstItem="gca-Sk-zEn" firstAttribute="top" secondItem="ay2-y4-Sd1" secondAttribute="bottom" id="nrj-sH-dMz"/>
+                            <constraint firstItem="ay2-y4-Sd1" firstAttribute="leading" secondItem="Aeb-9x-CYs" secondAttribute="leadingMargin" constant="-16" id="zPG-sy-qJW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="layout" destination="fhk-cg-SWL" id="msw-ks-3GN"/>
+                        <outlet property="photoView" destination="ay2-y4-Sd1" id="00d-c9-qJh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GWU-vh-oga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="342"/>
+            <point key="canvasLocation" x="318" y="450"/>
         </scene>
     </scenes>
 </document>

@@ -125,7 +125,7 @@ extension SXStatusCell:UICollectionViewDataSource,UICollectionViewDelegate{
             self.photoDidSelected!(status:status!,photoIndex:indexPath.item)
         }
         
-        println("\(indexPath) \(self)")
+//        println("\(indexPath) \(self)")
     }
     
     ///  配图数量
