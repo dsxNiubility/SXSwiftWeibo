@@ -111,9 +111,23 @@ class SXStatusCell: UITableViewCell {
             return "HomeCell"
         }
     }
+    
+    /// 定义一个图片被选择的闭包
+    var photoDidSelected:((status:Status,photoIndex:Int) ->())?
+    
 }
 
-extension SXStatusCell:UICollectionViewDataSource{
+extension SXStatusCell:UICollectionViewDataSource,UICollectionViewDelegate{
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        /// 如果有代码就执行
+        if self.photoDidSelected != nil{
+            self.photoDidSelected!(status:status!,photoIndex:indexPath.item)
+        }
+        
+        println("\(indexPath) \(self)")
+    }
+    
     ///  配图数量
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 配图的数量

@@ -110,6 +110,7 @@
                                             </cells>
                                             <connections>
                                                 <outlet property="dataSource" destination="ihf-xf-Pwa" id="3qc-Sw-Mgh"/>
+                                                <outlet property="delegate" destination="ihf-xf-Pwa" id="2sE-M8-u0F"/>
                                             </connections>
                                         </collectionView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRe-yb-sxE" userLabel="底部视图">
@@ -326,6 +327,7 @@
                                             </cells>
                                             <connections>
                                                 <outlet property="dataSource" destination="lwT-yp-pvq" id="SMb-oc-CKb"/>
+                                                <outlet property="delegate" destination="lwT-yp-pvq" id="bgh-33-lUd"/>
                                             </connections>
                                         </collectionView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPt-jf-YIA" userLabel="底部视图">

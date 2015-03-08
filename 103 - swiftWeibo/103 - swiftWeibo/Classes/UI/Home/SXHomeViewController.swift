@@ -61,6 +61,24 @@ extension SXHomeViewController:UITableViewDataSource,UITableViewDelegate{
         
         let cell = tableView.dequeueReusableCellWithIdentifier(info.cellId, forIndexPath: indexPath) as! SXStatusCell
         
+        //            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        //
+        //            })
+        
+        if cell.photoDidSelected == nil{
+            cell.photoDidSelected = { (status:Status!,index:Int)-> Void in
+                println("\(status.text) \(index)")  // $$$$$
+                
+                let vc = SXPhotoBrowserlViewController.photoBrowserViewController()
+                
+                vc.urls = info.status.largeUrls
+                vc.selectedIndex = index
+                
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+        }
+        
+        
         cell.status = info.status
         
         return cell

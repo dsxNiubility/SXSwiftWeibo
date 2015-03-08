@@ -128,6 +128,15 @@ class Status: NSObject, J2MProtocol {
         }
     }
     
+    /// 所有大图的 URL － 计算属性
+    var largeUrls: [String]? {
+        get {
+            // 可以使用 kvc 直接拿值
+            var urls = self.valueForKeyPath("pictureUrls.large_pic") as? NSArray
+            return urls as? [String]
+        }
+    }
+    
     /// 用户信息
     var user: UserInfo?
     /// 转发微博
@@ -143,5 +152,12 @@ class Status: NSObject, J2MProtocol {
 ///  微博配图模型
 class StatusPictureURL: NSObject {
     ///  缩略图 URL
-    var thumbnail_pic: String?
+    var thumbnail_pic: String?{
+        didSet{
+            var str = thumbnail_pic!
+            large_pic = str.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
+        }
+    }
+    ///  大图 URL
+    var large_pic: String?
 }
