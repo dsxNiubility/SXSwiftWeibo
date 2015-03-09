@@ -20,22 +20,43 @@ class SXHomeViewController: UITableViewController {
         return NSCache()
         }()
     
+    lazy var pullupView:RefreshView = {
+        let v = NSBundle.mainBundle().loadNibNamed("RefreshView", owner: nil, options: nil).last   as! RefreshView
+        
+        v.tipView.hidden = true
+        v.loadingView.hidden = false
+        
+        return v
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = pullupView
+        
         loadData()
+        
+        pullupView.addPullupOberserver(tableView){ 
+            println("上啦加载数据啦！！！！")
+            
+            /// 加载完就复位为了以后再加载
+//            self.pullupView.isPullupLoading = false
+        }
     }
     
-    func loadData(){
+    @IBAction func loadData(){
         println("加载数据")
-        SVProgressHUD.show()
+        
+        refreshControl?.beginRefreshing()
+        
         StatusesData.loadStatus { (data, error) -> () in
+            
+            self.refreshControl?.endRefreshing()
+            
             if error != nil{
                 println(error)
                 SVProgressHUD.showInfoWithStatus("网络繁忙请重试")
             }
-            SVProgressHUD.dismiss()
             if data != nil{
                 self.statusData = data
                 self.tableView.reloadData()
@@ -74,7 +95,7 @@ extension SXHomeViewController:UITableViewDataSource,UITableViewDelegate{
         
         if cell.photoDidSelected == nil{
             cell.photoDidSelected = { (status:Status!,index:Int)-> Void in
-                println("\(status.text) \(index)")  // $$$$$
+//                println("\(status.text) \(index)")  // $$$$$
                 
                 let vc = SXPhotoBrowserlViewController.photoBrowserViewController()
                 
@@ -101,7 +122,7 @@ extension SXHomeViewController:UITableViewDataSource,UITableViewDelegate{
 //            println("从缓存返回 \(h)")
             return CGFloat(h.floatValue)
         } else {
-            println("计算行高 \(__FUNCTION__) \(indexPath)")
+//            println("计算行高 \(__FUNCTION__) \(indexPath)")
             let cell = tableView.dequeueReusableCellWithIdentifier(info.cellId) as! SXStatusCell
             let height = cell.cellHeight(info.status)
             

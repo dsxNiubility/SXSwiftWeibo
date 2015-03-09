@@ -42,6 +42,7 @@
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azj-p1-9Wi">
                                 <rect key="frame" x="16" y="563" width="30" height="29"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="关闭">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,12 +51,25 @@
                                     <action selector="close" destination="fWU-6q-kUw" eventType="touchUpInside" id="Vd9-ji-a6m"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3t-2l-pUO">
+                                <rect key="frame" x="59" y="563" width="30" height="29"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="保存">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="save" destination="fWU-6q-kUw" eventType="touchUpInside" id="ALL-lH-dKm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="gca-Sk-zEn" firstAttribute="top" secondItem="Azj-p1-9Wi" secondAttribute="bottom" constant="8" id="2nG-4w-JqS"/>
                             <constraint firstItem="Azj-p1-9Wi" firstAttribute="leading" secondItem="Aeb-9x-CYs" secondAttribute="leadingMargin" id="TnA-j3-khn"/>
+                            <constraint firstItem="C3t-2l-pUO" firstAttribute="leading" secondItem="Azj-p1-9Wi" secondAttribute="trailing" constant="13" id="UnE-B5-LIb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ay2-y4-Sd1" secondAttribute="trailing" constant="-16" id="aJy-1h-BmR"/>
+                            <constraint firstItem="Azj-p1-9Wi" firstAttribute="top" secondItem="C3t-2l-pUO" secondAttribute="top" id="e31-nm-lhF"/>
                             <constraint firstItem="ay2-y4-Sd1" firstAttribute="top" secondItem="Aeb-9x-CYs" secondAttribute="topMargin" id="kyc-o0-LCW"/>
                             <constraint firstItem="gca-Sk-zEn" firstAttribute="top" secondItem="ay2-y4-Sd1" secondAttribute="bottom" id="nrj-sH-dMz"/>
                             <constraint firstItem="ay2-y4-Sd1" firstAttribute="leading" secondItem="Aeb-9x-CYs" secondAttribute="leadingMargin" constant="-16" id="zPG-sy-qJW"/>

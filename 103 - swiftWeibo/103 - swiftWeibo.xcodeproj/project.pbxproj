@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D06B8CF1AA9BFFF0004DEA0 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D06B8CE1AA9BFFF0004DEA0 /* Home.storyboard */; };
 		1D1B59091AA8957E002B3AAD /* String+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD261D1AA8846200C90E5A /* String+Hash.swift */; };
+		1D1EE8F61AADB2A300ABD9EE /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D1EE8F51AADB2A300ABD9EE /* RefreshView.xib */; };
+		1D1EE8FB1AADB4D800ABD9EE /* SXRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1EE8FA1AADB4D800ABD9EE /* SXRefreshControl.swift */; };
+		1D1EE8FD1AADE65300ABD9EE /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1EE8FC1AADE65300ABD9EE /* Home.storyboard */; };
 		1D24AE8B1AAC1E6A00BB70DD /* SXPhotoBrowserlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24AE8A1AAC1E6A00BB70DD /* SXPhotoBrowserlViewController.swift */; };
 		1D24AE8F1AAC62E600BB70DD /* PhotoBrowser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D24AE8E1AAC62E600BB70DD /* PhotoBrowser.storyboard */; };
 		1D40EFCA1AA97C71000566AC /* SXStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40EFC91AA97C71000566AC /* SXStatusCell.swift */; };
@@ -60,7 +62,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D06B8CE1AA9BFFF0004DEA0 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		1D1EE8F51AADB2A300ABD9EE /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
+		1D1EE8FA1AADB4D800ABD9EE /* SXRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXRefreshControl.swift; sourceTree = "<group>"; };
+		1D1EE8FC1AADE65300ABD9EE /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		1D24AE8A1AAC1E6A00BB70DD /* SXPhotoBrowserlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXPhotoBrowserlViewController.swift; sourceTree = "<group>"; };
 		1D24AE8E1AAC62E600BB70DD /* PhotoBrowser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoBrowser.storyboard; sourceTree = "<group>"; };
 		1D40EFC91AA97C71000566AC /* SXStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXStatusCell.swift; sourceTree = "<group>"; };
@@ -258,7 +262,9 @@
 		1DCF99231AA4295600C2EFF0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				1D06B8CE1AA9BFFF0004DEA0 /* Home.storyboard */,
+				1D1EE8F51AADB2A300ABD9EE /* RefreshView.xib */,
+				1D1EE8FC1AADE65300ABD9EE /* Home.storyboard */,
+				1D1EE8FA1AADB4D800ABD9EE /* SXRefreshControl.swift */,
 				1DBD25F81AA8219A00C90E5A /* SXHomeViewController.swift */,
 				1D40EFC91AA97C71000566AC /* SXStatusCell.swift */,
 			);
@@ -404,11 +410,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D1EE8F61AADB2A300ABD9EE /* RefreshView.xib in Resources */,
+				1D1EE8FD1AADE65300ABD9EE /* Home.storyboard in Resources */,
 				1DCF992B1AA429D100C2EFF0 /* OAuth.storyboard in Resources */,
 				1DBD26091AA8224000C90E5A /* Profile.storyboard in Resources */,
 				1D24AE8F1AAC62E600BB70DD /* PhotoBrowser.storyboard in Resources */,
 				1DBD26011AA8220700C90E5A /* Discover.storyboard in Resources */,
-				1D06B8CF1AA9BFFF0004DEA0 /* Home.storyboard in Resources */,
 				1DBD26051AA8222900C90E5A /* Main.storyboard in Resources */,
 				1DCF99381AA42AB200C2EFF0 /* SVProgressHUD.bundle in Resources */,
 				1DCF99061AA4278D00C2EFF0 /* Images.xcassets in Resources */,
@@ -445,6 +452,7 @@
 				1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */,
 				1DBD26161AA8760C00C90E5A /* SXSwiftJ2M.swift in Sources */,
 				1DBD26141AA875BC00C90E5A /* SimpleNetwork.swift in Sources */,
+				1D1EE8FB1AADB4D800ABD9EE /* SXRefreshControl.swift in Sources */,
 				1DCF98FF1AA4278D00C2EFF0 /* AppDelegate.swift in Sources */,
 				1DCF99371AA42AB200C2EFF0 /* SVIndefiniteAnimatedView.m in Sources */,
 				1DBD25FB1AA821B200C90E5A /* SXDiscoverViewController.swift in Sources */,

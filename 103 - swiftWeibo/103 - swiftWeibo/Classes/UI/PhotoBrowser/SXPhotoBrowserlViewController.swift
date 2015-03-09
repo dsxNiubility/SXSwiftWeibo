@@ -9,7 +9,7 @@
 import UIKit
 
 class SXPhotoBrowserlViewController: UIViewController {
-
+    
     var urls:[String]?
     
     var selectedIndex:Int = 0
@@ -45,13 +45,42 @@ class SXPhotoBrowserlViewController: UIViewController {
         photoView.pagingEnabled = true
     }
     
+    /// 直接到第几页
+    override func viewDidLayoutSubviews() {
+        let indexPath = NSIndexPath(forItem: selectedIndex, inSection: 0)
+        photoView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+    }
+    
     // 关闭
     @IBAction func close() {
         self.dismissViewControllerAnimated(true, completion: nil)
         SVProgressHUD.dismiss()
     }
+    
+    // 保存
+    @IBAction func save() {
+        
+        if let indexPath = photoView.indexPathsForVisibleItems().last as? NSIndexPath {
+            let cell = photoView.cellForItemAtIndexPath(indexPath) as! PhotoCell
+            
+            if let image = cell.imageView?.image{
+                UIImageWriteToSavedPhotosAlbum(image, self, "image:didFinishSavingWithError:contextInfo:", nil)
+            }
+        }
+        
+    }
+    
+    /// 代理方法保存后的回调
+    func image(image:UIImage, didFinishSavingWithError:NSError?,contextInfo:AnyObject?){
+        if didFinishSavingWithError != nil {
+            SVProgressHUD.showInfoWithStatus("保存出错")
+        } else {
+            SVProgressHUD.showInfoWithStatus("保存成功")
+        }
+    }
 }
 
+/// collection的数据源方法
 extension SXPhotoBrowserlViewController:UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -83,8 +112,18 @@ class PhotoCell:UICollectionViewCell,UIScrollViewDelegate {
     
     var imageView:UIImageView?
     
+    /// 形变方法返回需要形变的对象
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView!
+    }
+    
+    /// 形变结束后
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView!, atScale scale: CGFloat) {
+        
+        if isShortImage{
+            let y = (frame.size.height - imageView!.frame.size.height) * 0.5
+            scrollView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
+        }
     }
     
     
@@ -99,8 +138,9 @@ class PhotoCell:UICollectionViewCell,UIScrollViewDelegate {
                 if result != nil{
                     
                     var image = result as! UIImage
-                    self.imageView!.image = image
-                    self.calcImageSize(image.size)
+//                    self.imageView!.image = image
+//                    self.calcImageSize(image.size)
+                    self.setupImageView(image)
                     SVProgressHUD.dismiss()
                 }
             }
@@ -108,7 +148,7 @@ class PhotoCell:UICollectionViewCell,UIScrollViewDelegate {
     }
     
     
-    /// 通过图像大小处理图片
+    /// 通过图像大小处理图片（弃用）
     func calcImageSize(size:CGSize){
         
         var w = size.width
@@ -122,6 +162,42 @@ class PhotoCell:UICollectionViewCell,UIScrollViewDelegate {
             imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         }
     }
+    
+    var isShortImage = false
+    
+    /// 根据图像设置图像视图
+    func setupImageView(image:UIImage){
+        scrollView?.contentInset = UIEdgeInsetsZero
+        scrollView?.contentSize = CGSizeZero
+        scrollView?.contentOffset = CGPointZero
+        
+        var imageSize = image.size
+        var screenSize = self.bounds.size
+        
+        let h = screenSize.width / imageSize.width * imageSize.height
+        
+        let rect = CGRectMake(0, 0, screenSize.width, h)
+        
+        imageView!.frame =  rect
+        imageView!.image = image
+        scrollView!.frame = self.bounds
+        
+        
+        if  h > screenSize.height {
+            /// 这就是长图了
+            scrollView?.contentSize = rect.size
+            
+            isShortImage = false
+            
+        }else{
+            /// 这就是普通图
+            let y = (screenSize.height - h) * 0.5
+            scrollView?.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
+            
+            isShortImage = true
+        }
+    }
+
     
     override func awakeFromNib() {
         scrollView = UIScrollView()

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ixy-pv-bxQ" customClass="RefreshView" customModule="HMWeibo04" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gF8-Se-Xtv" userLabel="提示视图">
+                    <rect key="frame" x="150" y="0.0" width="300" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="下拉刷新数据..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnd-fU-HdP">
+                            <rect key="frame" x="109" y="22" width="83" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tableview_pull_refresh" translatesAutoresizingMaskIntoConstraints="NO" id="zP6-31-oBZ">
+                            <rect key="frame" x="69" y="14" width="32" height="32"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="klA-iG-epv"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6uY-SL-yw8" userLabel="加载视图">
+                    <rect key="frame" x="150" y="0.0" width="300" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="正在刷新数据..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iur-Kn-zG2">
+                            <rect key="frame" x="109" y="22" width="83" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tableview_loading" translatesAutoresizingMaskIntoConstraints="NO" id="zM5-Jc-7FR">
+                            <rect key="frame" x="69" y="14" width="32" height="32"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="9ti-RA-pW9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="6uY-SL-yw8" firstAttribute="top" secondItem="ixy-pv-bxQ" secondAttribute="top" id="ByX-Oa-GQT"/>
+                <constraint firstAttribute="bottom" secondItem="gF8-Se-Xtv" secondAttribute="bottom" id="P0P-Kb-bSD"/>
+                <constraint firstAttribute="bottom" secondItem="6uY-SL-yw8" secondAttribute="bottom" id="YQL-Lt-FIG"/>
+                <constraint firstAttribute="centerX" secondItem="6uY-SL-yw8" secondAttribute="centerX" id="Ye8-Ps-Vel"/>
+                <constraint firstItem="gF8-Se-Xtv" firstAttribute="top" secondItem="ixy-pv-bxQ" secondAttribute="top" id="ZfR-ci-rYv"/>
+                <constraint firstAttribute="centerX" secondItem="gF8-Se-Xtv" secondAttribute="centerX" id="mor-eJ-LP4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="loadingIcon" destination="zM5-Jc-7FR" id="JrW-eZ-cxl"/>
+                <outlet property="loadingView" destination="6uY-SL-yw8" id="hrl-C5-zy3"/>
+                <outlet property="tipIcon" destination="zP6-31-oBZ" id="6Yo-oI-4aj"/>
+                <outlet property="tipView" destination="gF8-Se-Xtv" id="CwI-kA-vzO"/>
+            </connections>
+            <point key="canvasLocation" x="519" y="245"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tableview_loading" width="32" height="32"/>
+        <image name="tableview_pull_refresh" width="32" height="32"/>
+    </resources>
+</document>
