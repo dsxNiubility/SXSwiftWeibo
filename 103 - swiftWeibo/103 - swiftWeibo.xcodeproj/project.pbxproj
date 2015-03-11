@@ -14,6 +14,10 @@
 		1D24AE8B1AAC1E6A00BB70DD /* SXPhotoBrowserlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24AE8A1AAC1E6A00BB70DD /* SXPhotoBrowserlViewController.swift */; };
 		1D24AE8F1AAC62E600BB70DD /* PhotoBrowser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D24AE8E1AAC62E600BB70DD /* PhotoBrowser.storyboard */; };
 		1D40EFCA1AA97C71000566AC /* SXStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40EFC91AA97C71000566AC /* SXStatusCell.swift */; };
+		1D58E1041AB0578A007E29FC /* Emoticons in Resources */ = {isa = PBXBuildFile; fileRef = 1D58E1031AB0578A007E29FC /* Emoticons */; };
+		1D58E1061AB057DC007E29FC /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D58E1051AB057DC007E29FC /* Compose.storyboard */; };
+		1D58E1081AB057E3007E29FC /* Emoticons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D58E1071AB057E3007E29FC /* Emoticons.storyboard */; };
+		1D58E10A1AB05834007E29FC /* SXEmoticonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D58E1091AB05834007E29FC /* SXEmoticonsViewController.swift */; };
 		1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
 		1D6175561AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
 		1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
@@ -30,7 +34,6 @@
 		1DBD26091AA8224000C90E5A /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DBD26081AA8224000C90E5A /* Profile.storyboard */; };
 		1DBD260B1AA8270800C90E5A /* SXMainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD260A1AA8270800C90E5A /* SXMainTabBar.swift */; };
 		1DBD260E1AA86F1400C90E5A /* SXComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD260D1AA86F1400C90E5A /* SXComposeViewController.swift */; };
-		1DBD26101AA86F3600C90E5A /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DBD260F1AA86F3600C90E5A /* Compose.storyboard */; };
 		1DBD26141AA875BC00C90E5A /* SimpleNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD26131AA875BC00C90E5A /* SimpleNetwork.swift */; };
 		1DBD26161AA8760C00C90E5A /* SXSwiftJ2M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD26151AA8760C00C90E5A /* SXSwiftJ2M.swift */; };
 		1DBD26171AA8775B00C90E5A /* SimpleNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD26131AA875BC00C90E5A /* SimpleNetwork.swift */; };
@@ -68,6 +71,10 @@
 		1D24AE8A1AAC1E6A00BB70DD /* SXPhotoBrowserlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXPhotoBrowserlViewController.swift; sourceTree = "<group>"; };
 		1D24AE8E1AAC62E600BB70DD /* PhotoBrowser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoBrowser.storyboard; sourceTree = "<group>"; };
 		1D40EFC91AA97C71000566AC /* SXStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXStatusCell.swift; sourceTree = "<group>"; };
+		1D58E1031AB0578A007E29FC /* Emoticons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Emoticons; sourceTree = "<group>"; };
+		1D58E1051AB057DC007E29FC /* Compose.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
+		1D58E1071AB057E3007E29FC /* Emoticons.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Emoticons.storyboard; sourceTree = "<group>"; };
+		1D58E1091AB05834007E29FC /* SXEmoticonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXEmoticonsViewController.swift; sourceTree = "<group>"; };
 		1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1DB4C9EC1AA6B2A500CA4B38 /* AccessTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenTests.swift; sourceTree = "<group>"; };
@@ -82,7 +89,6 @@
 		1DBD26081AA8224000C90E5A /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		1DBD260A1AA8270800C90E5A /* SXMainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXMainTabBar.swift; sourceTree = "<group>"; };
 		1DBD260D1AA86F1400C90E5A /* SXComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXComposeViewController.swift; sourceTree = "<group>"; };
-		1DBD260F1AA86F3600C90E5A /* Compose.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
 		1DBD26131AA875BC00C90E5A /* SimpleNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleNetwork.swift; sourceTree = "<group>"; };
 		1DBD26151AA8760C00C90E5A /* SXSwiftJ2M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXSwiftJ2M.swift; sourceTree = "<group>"; };
 		1DBD26191AA877D400C90E5A /* StatusesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesData.swift; sourceTree = "<group>"; };
@@ -139,8 +145,10 @@
 		1DBD260C1AA86ED500C90E5A /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				1D58E1051AB057DC007E29FC /* Compose.storyboard */,
+				1D58E1071AB057E3007E29FC /* Emoticons.storyboard */,
 				1DBD260D1AA86F1400C90E5A /* SXComposeViewController.swift */,
-				1DBD260F1AA86F3600C90E5A /* Compose.storyboard */,
+				1D58E1091AB05834007E29FC /* SXEmoticonsViewController.swift */,
 			);
 			path = Compose;
 			sourceTree = "<group>";
@@ -178,6 +186,7 @@
 		1DCF98FC1AA4278D00C2EFF0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1D58E1031AB0578A007E29FC /* Emoticons */,
 				1DCF992F1AA42A8D00C2EFF0 /* SwiftWeibo-Bridge.h */,
 				1DCF98FD1AA4278D00C2EFF0 /* Info.plist */,
 			);
@@ -416,10 +425,12 @@
 				1DBD26091AA8224000C90E5A /* Profile.storyboard in Resources */,
 				1D24AE8F1AAC62E600BB70DD /* PhotoBrowser.storyboard in Resources */,
 				1DBD26011AA8220700C90E5A /* Discover.storyboard in Resources */,
+				1D58E1081AB057E3007E29FC /* Emoticons.storyboard in Resources */,
+				1D58E1041AB0578A007E29FC /* Emoticons in Resources */,
+				1D58E1061AB057DC007E29FC /* Compose.storyboard in Resources */,
 				1DBD26051AA8222900C90E5A /* Main.storyboard in Resources */,
 				1DCF99381AA42AB200C2EFF0 /* SVProgressHUD.bundle in Resources */,
 				1DCF99061AA4278D00C2EFF0 /* Images.xcassets in Resources */,
-				1DBD26101AA86F3600C90E5A /* Compose.storyboard in Resources */,
 				1DBD26071AA8223700C90E5A /* Message.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +469,7 @@
 				1DBD25FB1AA821B200C90E5A /* SXDiscoverViewController.swift in Sources */,
 				1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */,
 				1DBD260B1AA8270800C90E5A /* SXMainTabBar.swift in Sources */,
+				1D58E10A1AB05834007E29FC /* SXEmoticonsViewController.swift in Sources */,
 				1DBD25F71AA8217600C90E5A /* SXMainTabBarController.swift in Sources */,
 				1DBD25FD1AA821C500C90E5A /* SXMessageViewController.swift in Sources */,
 			);

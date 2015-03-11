@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bem-pb-RrL">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Emoticons View Controller-->
+        <scene sceneID="QbE-2t-0xR">
+            <objects>
+                <viewController id="bem-pb-RrL" customClass="SXEmoticonsViewController" customModule="_03___swiftWeibo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="O8b-fL-fog"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rx7-UE-bky"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="loW-7t-oSP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RJ2-fT-WTx">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qQN-LA-hNQ">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmoticonsCell" id="ca4-FF-Vim">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="bem-pb-RrL" id="Q9I-q1-N1r"/>
+                                </connections>
+                            </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efv-QD-2uH">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="最近" id="rEK-hO-ZAU"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="r8P-ae-VDT"/>
+                                    <barButtonItem title="默认" id="8hZ-tx-bAa"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0Fb-lv-zY5"/>
+                                    <barButtonItem title="emoji" id="9bv-wj-oof"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="gVQ-Si-p5o"/>
+                                    <barButtonItem title="浪小花" id="fTk-z8-ti8"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RJ2-fT-WTx" firstAttribute="leading" secondItem="loW-7t-oSP" secondAttribute="leadingMargin" constant="-16" id="8th-qi-hy7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RJ2-fT-WTx" secondAttribute="trailing" constant="-16" id="Ix8-LY-56R"/>
+                            <constraint firstItem="Rx7-UE-bky" firstAttribute="top" secondItem="Efv-QD-2uH" secondAttribute="bottom" id="Lcb-M7-BUe"/>
+                            <constraint firstItem="Efv-QD-2uH" firstAttribute="leading" secondItem="loW-7t-oSP" secondAttribute="leadingMargin" constant="-16" id="Oli-oT-o0k"/>
+                            <constraint firstItem="RJ2-fT-WTx" firstAttribute="top" secondItem="loW-7t-oSP" secondAttribute="topMargin" id="Paf-G3-ZWd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Efv-QD-2uH" secondAttribute="trailing" constant="-16" id="TwD-4p-usI"/>
+                            <constraint firstItem="Efv-QD-2uH" firstAttribute="top" secondItem="RJ2-fT-WTx" secondAttribute="bottom" id="p0E-RI-5DF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="RJ2-fT-WTx" id="ALT-pv-Rq4"/>
+                        <outlet property="layout" destination="qQN-LA-hNQ" id="V5Y-IX-MQp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="31A-Vp-px0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="322" y="289"/>
+        </scene>
+    </scenes>
+</document>

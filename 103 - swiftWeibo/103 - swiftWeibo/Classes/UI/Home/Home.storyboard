@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeCell" rowHeight="50" id="ihf-xf-Pwa" userLabel="原创微博" customClass="SXStatusCell" customModule="_03___swiftWeibo" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomeCell" rowHeight="50" id="ihf-xf-Pwa" userLabel="原创微博" customClass="SXStatusCell" customModule="_03___swiftWeibo" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ihf-xf-Pwa" id="pxt-Qw-ro2">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -217,7 +217,7 @@
                                     <outlet property="vipIcon" destination="wV3-BZ-qUy" id="UUe-OG-xx6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ForwardCell" rowHeight="450" id="lwT-yp-pvq" userLabel="转发微博" customClass="SXStatusCell" customModule="_03___swiftWeibo" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ForwardCell" rowHeight="450" id="lwT-yp-pvq" userLabel="转发微博" customClass="SXStatusCell" customModule="_03___swiftWeibo" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lwT-yp-pvq" id="bCv-Ub-Ffy">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -457,7 +457,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5k-Z7-LFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="353" y="361"/>
+            <point key="canvasLocation" x="122" y="396"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cYf-pM-j0F">
