@@ -97,7 +97,7 @@ class SXComposeViewController: UIViewController {
         
         toolBarBottomConstraint.constant = height
         
-        UIView.animateWithDuration(duration) {
+        UIView.animateWithDuration(0.25) {
             self.view.layoutIfNeeded()
         }
     }
