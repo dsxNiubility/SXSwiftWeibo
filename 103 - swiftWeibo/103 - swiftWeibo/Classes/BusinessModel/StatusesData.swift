@@ -32,11 +32,11 @@ class StatusesData: NSObject, J2MProtocol {
     
     ///  刷新微博数据 - 专门加载网络数据以及错误处理的回调
     ///  一旦加载成功，负责字典转模型，回调传回转换过的模型数据
-    class func loadStatus(completion: (data: StatusesData?, error: NSError?)->()) {
+    class func loadStatus(maxId:Int = 0,completion: (data: StatusesData?, error: NSError?)->()) {
         
         let net = NetworkManager.sharedManager
         if let token = AccessToken.loadAccessToken()?.access_token {
-            let params = ["access_token": token]
+            let params = ["access_token": token,"max_id":"\(maxId)"]
             
             // 发送网络异步请求
             net.requestJSON(.GET, WB_Home_Timeline_URL, params) { (result, error) -> () in

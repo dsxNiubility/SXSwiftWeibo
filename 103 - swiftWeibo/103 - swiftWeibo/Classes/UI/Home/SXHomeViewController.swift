@@ -36,11 +36,16 @@ class SXHomeViewController: UITableViewController {
         
         loadData()
         
+        weak var weakSelf = self
         pullupView.addPullupOberserver(tableView){ 
             println("上啦加载数据啦！！！！")
             
-            /// 加载完就复位为了以后再加载
-//            self.pullupView.isPullupLoading = false
+            /// 获取到maxId
+            if let maxId = self.statusData?.statuses?.last?.id{
+                
+                weakSelf?.loadData(maxId:maxId - 1)
+            }
+            
         }
     }
     
@@ -51,14 +56,16 @@ class SXHomeViewController: UITableViewController {
         tableView.removeObserver(pullupView, forKeyPath: "contentOffset")
     }
     
-    @IBAction func loadData(){
+    
+    
+    @IBAction func loadData(maxId:Int = 0){
         println("加载数据")
         
         refreshControl?.beginRefreshing()
         
         weak var weakSelf = self
         
-        StatusesData.loadStatus { (data, error) -> () in
+        StatusesData.loadStatus(maxId:maxId) { (data, error) -> () in
             
             weakSelf!.refreshControl?.endRefreshing()
             
@@ -67,8 +74,23 @@ class SXHomeViewController: UITableViewController {
                 SVProgressHUD.showInfoWithStatus("网络繁忙请重试")
             }
             if data != nil{
-                weakSelf!.statusData = data
-                weakSelf!.tableView.reloadData()
+                
+                if maxId == 0 {
+                
+                    weakSelf?.statusData = data
+                    weakSelf?.tableView.reloadData()
+                }else {
+                    println("加载到了新的数据 进行数据拼接")
+                    
+                    let list = weakSelf!.statusData!.statuses! + data!.statuses!
+                    weakSelf?.statusData?.statuses = list
+                    
+                    weakSelf?.tableView.reloadData()
+                    
+                    /// 复位刷新视图属性
+                    weakSelf?.pullupView.isPullupLoading = false
+                    weakSelf?.pullupView.stopLoading()
+                }
             }
         }
     }
