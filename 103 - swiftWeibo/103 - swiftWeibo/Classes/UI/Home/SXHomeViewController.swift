@@ -20,30 +20,34 @@ class SXHomeViewController: UITableViewController {
         return NSCache()
         }()
     
+    /// 上拉视图懒加载
     lazy var pullupView:RefreshView = {
-        let v = NSBundle.mainBundle().loadNibNamed("RefreshView", owner: nil, options: nil).last   as! RefreshView
-        
-        v.tipView.hidden = true
-        v.loadingView.hidden = false
-        
-        return v
+        /// 转，不显示箭头
+        return RefreshView.refreshView(isLoading: true)
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.tableFooterView = pullupView
+        setupPullupView()
         
         loadData()
         
+
+    }
+    
+    /// 设置上拉数据加载视图
+    func setupPullupView(){
+        tableView.tableFooterView = pullupView
+        
         weak var weakSelf = self
-        pullupView.addPullupOberserver(tableView){ 
+        pullupView.addPullupOberserver(tableView){
             println("上啦加载数据啦！！！！")
             
             /// 获取到maxId
             if let maxId = self.statusData?.statuses?.last?.id{
                 
-                weakSelf?.loadData(maxId:maxId - 1)
+                weakSelf?.loadData(maxId - 1)
             }
             
         }
@@ -56,9 +60,12 @@ class SXHomeViewController: UITableViewController {
         tableView.removeObserver(pullupView, forKeyPath: "contentOffset")
     }
     
+    @IBAction func loadData(){
+       loadData(0)
+        
+    }
     
-    
-    @IBAction func loadData(maxId:Int = 0){
+    func loadData(maxId:Int){
         println("加载数据")
         
         refreshControl?.beginRefreshing()

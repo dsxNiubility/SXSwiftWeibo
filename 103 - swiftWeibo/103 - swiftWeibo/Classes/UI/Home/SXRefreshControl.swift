@@ -11,8 +11,8 @@ import UIKit
 class SXRefreshControl: UIRefreshControl {
     
     lazy var refreshV : RefreshView = {
-        let v = NSBundle.mainBundle().loadNibNamed("RefreshView", owner: nil, options: nil).last as! RefreshView
-        return v
+        /// 显示箭头，不转
+        return RefreshView.refreshView(isLoading: false)
     }()
     
     override func willMoveToWindow(newWindow: UIWindow?) {
@@ -75,6 +75,18 @@ class SXRefreshControl: UIRefreshControl {
 }
 
 class RefreshView: UIView {
+    
+    
+    class func refreshView(isLoading:Bool = false) -> RefreshView {
+        let v = NSBundle.mainBundle().loadNibNamed("RefreshView", owner: nil, options: nil).last   as! RefreshView
+        
+        /// 两个都调用此方法  // $$$$$
+        v.tipView.hidden = isLoading
+        v.loadingView.hidden = !isLoading
+        
+        return v
+    }
+    
     ///  提示视图
     @IBOutlet weak var tipView: UIView!
     ///  提示图标
