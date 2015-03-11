@@ -44,22 +44,31 @@ class SXHomeViewController: UITableViewController {
         }
     }
     
+    deinit {
+        println("home视图控制器被释放!!!!!!")
+        
+        // 主动释放加载刷新视图对tableView的观察
+        tableView.removeObserver(pullupView, forKeyPath: "contentOffset")
+    }
+    
     @IBAction func loadData(){
         println("加载数据")
         
         refreshControl?.beginRefreshing()
         
+        weak var weakSelf = self
+        
         StatusesData.loadStatus { (data, error) -> () in
             
-            self.refreshControl?.endRefreshing()
+            weakSelf!.refreshControl?.endRefreshing()
             
             if error != nil{
                 println(error)
                 SVProgressHUD.showInfoWithStatus("网络繁忙请重试")
             }
             if data != nil{
-                self.statusData = data
-                self.tableView.reloadData()
+                weakSelf!.statusData = data
+                weakSelf!.tableView.reloadData()
             }
         }
     }
@@ -96,13 +105,14 @@ extension SXHomeViewController:UITableViewDataSource,UITableViewDelegate{
         if cell.photoDidSelected == nil{
             cell.photoDidSelected = { (status:Status!,index:Int)-> Void in
 //                println("\(status.text) \(index)")  // $$$$$
+                weak var weakSelf = self
                 
                 let vc = SXPhotoBrowserlViewController.photoBrowserViewController()
                 
                 vc.urls = status.largeUrls
                 vc.selectedIndex = index
                 
-                self.presentViewController(vc, animated: true, completion: nil)
+                weakSelf!.presentViewController(vc, animated: true, completion: nil)
             }
         }
         

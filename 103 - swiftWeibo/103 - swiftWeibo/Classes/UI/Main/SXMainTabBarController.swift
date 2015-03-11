@@ -46,4 +46,8 @@ class SXMainTabBarController: UITabBarController {
         self.addChildViewController(nav)  // $$$$$
     
     }
+    
+    deinit{
+        println("主控制器被释放")
+    }
 }

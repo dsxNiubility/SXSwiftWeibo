@@ -29,6 +29,7 @@ class SXRefreshControl: UIRefreshControl {
     
     /// 销毁观察者
     deinit{
+        println("SXRefreshControl   888")
         self.removeObserver(self, forKeyPath: "frame")
     }
     
@@ -123,30 +124,36 @@ class RefreshView: UIView {
             angel = CGFloat(M_PI - 0.01)
         }
         
+        weak var weakSelf = self
+        
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             // 旋转提示图标 180
-            self.tipIcon.transform = CGAffineTransformRotate(self.tipIcon.transform, angel)
+            weakSelf!.tipIcon.transform = CGAffineTransformRotate(self.tipIcon.transform, angel)
         })
     }
     
     /// MARK: - 上拉刷新部分代码
-    var parentView :UITableView?
+   weak var parentView :UITableView?
     
     /// 给parentView添加观察者
     func addPullupOberserver(parentView:UITableView,pullupLoadData:()->()){
+        
+        
+        
         self.parentView = parentView
         
         self.parentView = parentView
         
         self.PullupLoadData = pullupLoadData
         
-        parentView.addObserver(self, forKeyPath: "contentOffset", options: NSKeyValueObservingOptions.New, context: nil)
+        self.parentView!.addObserver(self, forKeyPath: "contentOffset", options: NSKeyValueObservingOptions.New, context: nil)
         
         
     }
     
     deinit{
-        parentView!.removeObserver(self, forKeyPath: "contentOffset")
+        println("RefreshView   888")
+//        parentView!.removeObserver(self, forKeyPath: "contentOffset")
     }
     
     /// 上啦加载数据标记
