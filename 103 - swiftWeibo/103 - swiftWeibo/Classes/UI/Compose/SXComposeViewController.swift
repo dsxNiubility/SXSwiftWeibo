@@ -10,19 +10,10 @@ import UIKit
 
 class SXComposeViewController: UIViewController {
     
-    /// 占位文本
-    lazy var placeHolderLabel:UILabel? = {
-        let l = UILabel()
-        l.text = "分享新鲜事..."
-        l.font = UIFont.systemFontOfSize(18)
-        l.textColor = UIColor.lightGrayColor()
-        l.frame = CGRectMake(5, 8, 0, 0)
-        l.sizeToFit()
-        return l
-        }()
+
 
     /// 文本框
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: SXComposeTextView!
     
     /// 发送按钮
     @IBOutlet weak var sendButton: UIBarButtonItem!
@@ -54,20 +45,14 @@ class SXComposeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
-        
         registerNotification()
         
         self.addChildViewController(emoticonsVC!)
         
     }
     
-    /// 设置UI
-    func setupUI(){
-        textView.alwaysBounceVertical = true
-        
-        textView.addSubview(placeHolderLabel!)
-        
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         textView.becomeFirstResponder()
     }
     
@@ -136,6 +121,44 @@ extension SXComposeViewController: EmoticonsViewControllerDelegate {
     
     func emoticonsViewControllerDidSelectEmoticon(vc: SXEmoticonsViewController, emoticon: Emoticon) {
         println("\(emoticon.chs)")
+        
+        /// 设置输入框的文字
+        var str: String?
+        if emoticon.chs != nil {
+//            /// 图文混排的入口
+//            var str = emoticon.chs
+//            
+//            /// 设置图像
+//            var attachement = NSTextAttachment()
+//            attachement.image = UIImage(contentsOfFile: emoticon.imagePath!)
+//            
+//            /// 设置行高避免不一样大
+//            let height = textView.font.lineHeight
+//            attachement.bounds = CGRectMake(0, 0, height, height)
+//            var attributeString = NSAttributedString(attachment: attachement)
+            
+            /// 从分类的方法中取
+            var attributeString = SXEmoteTextAttachment.attributeString(emoticon, height: textView.font.lineHeight)
+            
+            /// 替换 textView中的属性文本
+            var strM = NSMutableAttributedString(attributedString: textView.attributedText)
+            strM.replaceCharactersInRange(textView.selectedRange, withAttributedString: attributeString)
+            
+            /// 需要设置整个字符串的文本属性， 设置fontName 是 textView.font
+            let range = NSMakeRange(0, strM.length)
+            strM.addAttribute(NSFontAttributeName, value: textView.font, range: range)
+            
+            /// 先记录光标的位置再赋值，最后要恢复光标位置
+            var location = textView.selectedRange.location
+            textView.attributedText = strM
+            textView.selectedRange = NSMakeRange(location + 1, 0)
+            
+        }else if emoticon.emoji != nil {
+            /// 默认是把表情拼接到最后， 用这行代码是在光标位置插入文本
+            textView.replaceRange(textView.selectedTextRange!, withText: emoticon.emoji!)
+            
+            
+        }
     }
 }
 
@@ -154,7 +177,7 @@ extension SXComposeViewController:UITextViewDelegate{
         }
         
         /// 超过了140个之后输入不了
-        if textView.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) + text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 10 {
+        if textView.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) + text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 140 {
             return false
         }
         
@@ -162,7 +185,7 @@ extension SXComposeViewController:UITextViewDelegate{
     }
     
     func textViewDidChange(textView: UITextView) {
-        placeHolderLabel?.hidden = !textView.text.isEmpty
+        self.textView.placeHolderLabel!.hidden = !self.textView.text.isEmpty
         sendButton.enabled = !textView.text.isEmpty
     }
     

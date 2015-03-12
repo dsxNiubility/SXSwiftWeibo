@@ -19,6 +19,8 @@
 		1D58E10A1AB05834007E29FC /* SXEmoticonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D58E1091AB05834007E29FC /* SXEmoticonsViewController.swift */; };
 		1D5C4E6E1AB163B2006AA087 /* Emoticons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C4E6D1AB163B2006AA087 /* Emoticons.swift */; };
 		1D5C4E701AB192C3006AA087 /* Emoticons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D5C4E6F1AB192C3006AA087 /* Emoticons.storyboard */; };
+		1D5C4E721AB1EF2A006AA087 /* SXEmoteTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C4E711AB1EF29006AA087 /* SXEmoteTextAttachment.swift */; };
+		1D5C4E741AB1F092006AA087 /* SXComposeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C4E731AB1F092006AA087 /* SXComposeTextView.swift */; };
 		1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
 		1D6175561AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
 		1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
@@ -77,6 +79,8 @@
 		1D58E1091AB05834007E29FC /* SXEmoticonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXEmoticonsViewController.swift; sourceTree = "<group>"; };
 		1D5C4E6D1AB163B2006AA087 /* Emoticons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoticons.swift; sourceTree = "<group>"; };
 		1D5C4E6F1AB192C3006AA087 /* Emoticons.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Emoticons.storyboard; sourceTree = "<group>"; };
+		1D5C4E711AB1EF29006AA087 /* SXEmoteTextAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXEmoteTextAttachment.swift; sourceTree = "<group>"; };
+		1D5C4E731AB1F092006AA087 /* SXComposeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXComposeTextView.swift; sourceTree = "<group>"; };
 		1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1DB4C9EC1AA6B2A500CA4B38 /* AccessTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenTests.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 				1D58E1051AB057DC007E29FC /* Compose.storyboard */,
 				1DBD260D1AA86F1400C90E5A /* SXComposeViewController.swift */,
 				1D58E1091AB05834007E29FC /* SXEmoticonsViewController.swift */,
+				1D5C4E711AB1EF29006AA087 /* SXEmoteTextAttachment.swift */,
+				1D5C4E731AB1F092006AA087 /* SXComposeTextView.swift */,
 				1D5C4E6F1AB192C3006AA087 /* Emoticons.storyboard */,
 				1D5C4E6D1AB163B2006AA087 /* Emoticons.swift */,
 			);
@@ -464,12 +470,14 @@
 				1DBD261C1AA877D400C90E5A /* UserInfo.swift in Sources */,
 				1DCF99391AA42AB200C2EFF0 /* SVProgressHUD.m in Sources */,
 				1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */,
+				1D5C4E741AB1F092006AA087 /* SXComposeTextView.swift in Sources */,
 				1DBD26161AA8760C00C90E5A /* SXSwiftJ2M.swift in Sources */,
 				1DBD26141AA875BC00C90E5A /* SimpleNetwork.swift in Sources */,
 				1D1EE8FB1AADB4D800ABD9EE /* SXRefreshControl.swift in Sources */,
 				1DCF98FF1AA4278D00C2EFF0 /* AppDelegate.swift in Sources */,
 				1D5C4E6E1AB163B2006AA087 /* Emoticons.swift in Sources */,
 				1DCF99371AA42AB200C2EFF0 /* SVIndefiniteAnimatedView.m in Sources */,
+				1D5C4E721AB1EF2A006AA087 /* SXEmoteTextAttachment.swift in Sources */,
 				1DBD25FB1AA821B200C90E5A /* SXDiscoverViewController.swift in Sources */,
 				1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */,
 				1DBD260B1AA8270800C90E5A /* SXMainTabBar.swift in Sources */,

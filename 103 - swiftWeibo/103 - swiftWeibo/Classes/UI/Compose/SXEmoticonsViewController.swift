@@ -91,11 +91,6 @@ extension SXEmoticonsViewController:UICollectionViewDataSource,UICollectionViewD
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EmoticonsCell", forIndexPath: indexPath) as! EmoticonCell
         
-//        if indexPath.section == 1 {
-//            cell.backgroundColor = UIColor.orangeColor()
-//        } else {
-//            cell.backgroundColor = UIColor.redColor()
-//        }
         
         /// 属性赋值
         cell.emoticon = emoticonSection![indexPath.section].emoticons[indexPath.item]
