@@ -19,6 +19,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RJ2-fT-WTx">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qQN-LA-hNQ">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -26,18 +27,44 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmoticonsCell" id="ca4-FF-Vim">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmoticonsCell" id="ca4-FF-Vim" customClass="EmoticonCell" customModule="_03___swiftWeibo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jGU-Gj-oOu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEW-M5-ZId">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="jGU-Gj-oOu" firstAttribute="leading" secondItem="ca4-FF-Vim" secondAttribute="leading" id="L5X-w6-fGB"/>
+                                            <constraint firstAttribute="bottom" secondItem="jGU-Gj-oOu" secondAttribute="bottom" id="fpQ-gM-pMt"/>
+                                            <constraint firstAttribute="bottom" secondItem="mEW-M5-ZId" secondAttribute="bottom" id="gAb-XM-VJY"/>
+                                            <constraint firstItem="mEW-M5-ZId" firstAttribute="leading" secondItem="ca4-FF-Vim" secondAttribute="leading" id="k9M-OM-BGw"/>
+                                            <constraint firstItem="mEW-M5-ZId" firstAttribute="top" secondItem="ca4-FF-Vim" secondAttribute="top" id="n9j-NK-LDa"/>
+                                            <constraint firstItem="jGU-Gj-oOu" firstAttribute="top" secondItem="ca4-FF-Vim" secondAttribute="top" id="oeJ-f6-DT8"/>
+                                            <constraint firstAttribute="trailing" secondItem="mEW-M5-ZId" secondAttribute="trailing" id="qiY-NV-v7z"/>
+                                            <constraint firstAttribute="trailing" secondItem="jGU-Gj-oOu" secondAttribute="trailing" id="z5C-Zh-S6U"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="emojiLabel" destination="mEW-M5-ZId" id="rBZ-gm-Rp4"/>
+                                            <outlet property="iconView" destination="jGU-Gj-oOu" id="GF2-mh-LXR"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="bem-pb-RrL" id="Q9I-q1-N1r"/>
+                                    <outlet property="delegate" destination="bem-pb-RrL" id="Oqe-Fk-dRv"/>
                                 </connections>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efv-QD-2uH">
@@ -71,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="31A-Vp-px0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="322" y="289"/>
+            <point key="canvasLocation" x="351" y="310"/>
         </scene>
     </scenes>
 </document>

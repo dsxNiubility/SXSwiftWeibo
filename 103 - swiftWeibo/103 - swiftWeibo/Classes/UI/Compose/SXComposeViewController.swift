@@ -105,7 +105,12 @@ class SXComposeViewController: UIViewController {
     /// 懒加载表情视图控制器
     lazy var emoticonsVC:SXEmoticonsViewController? = {
         let sb = UIStoryboard(name: "Emoticons", bundle: nil)
-        return sb.instantiateInitialViewController() as? SXEmoticonsViewController
+        let vc = sb.instantiateInitialViewController() as? SXEmoticonsViewController
+        
+        // 1. 设置代理
+        vc?.delegate = self
+        
+        return vc
     }()
     
     
@@ -125,6 +130,15 @@ class SXComposeViewController: UIViewController {
     
     }
 }
+
+// 2. 遵守协议(通过 extension)并且实现方法！
+extension SXComposeViewController: EmoticonsViewControllerDelegate {
+    
+    func emoticonsViewControllerDidSelectEmoticon(vc: SXEmoticonsViewController, emoticon: Emoticon) {
+        println("\(emoticon.chs)")
+    }
+}
+
 
 extension SXComposeViewController:UITextViewDelegate{
     
