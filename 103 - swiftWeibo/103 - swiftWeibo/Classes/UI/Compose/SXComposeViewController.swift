@@ -23,6 +23,10 @@ class SXComposeViewController: UIViewController {
     
     /// 取消按钮点击事件
     @IBAction func cancel(sender: UIBarButtonItem) {
+        
+        /// 为了更好的用户体验先缩键盘再缩文本框
+        self.textView.resignFirstResponder()
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -69,22 +73,23 @@ class SXComposeViewController: UIViewController {
     
     func keyboardFrameChanged(notification:NSNotification) {
         
-        var height: CGFloat = 0
-        var duration = 0.25
         
         /// 取出键盘中的数值，swift有点麻烦 // $$$$$
         if notification.name == UIKeyboardWillChangeFrameNotification {
             let rect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-            height = rect.size.height
+            let height = rect.size.height
             
-            duration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+            let duration = (notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+            toolBarBottomConstraint.constant = height
+            
+            UIView.animateWithDuration(duration) {
+                self.view.layoutIfNeeded()
+            }
+        }else {
+            /// 这就是键盘隐藏的通知执行
+            toolBarBottomConstraint.constant = 0
         }
         
-        toolBarBottomConstraint.constant = height
-        
-        UIView.animateWithDuration(0.25) {
-            self.view.layoutIfNeeded()
-        }
     }
     
     /// 懒加载表情视图控制器
