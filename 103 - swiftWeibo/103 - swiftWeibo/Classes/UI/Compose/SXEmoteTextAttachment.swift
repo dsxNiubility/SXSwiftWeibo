@@ -19,7 +19,7 @@ class SXEmoteTextAttachment: NSTextAttachment {
         attachment.emoteString = emoticon.chs
         
         // 设置高度
-        attachment.bounds = CGRectMake(0, 0, height, height)
+        attachment.bounds = CGRectMake(0, -4, height, height)
         
         // 2. 带图像的属性文本
         return NSAttributedString(attachment: attachment)

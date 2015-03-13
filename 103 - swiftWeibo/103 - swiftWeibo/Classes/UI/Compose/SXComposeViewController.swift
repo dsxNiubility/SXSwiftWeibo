@@ -35,7 +35,7 @@ class SXComposeViewController: UIViewController {
         let urlString = "https://api.weibo.com/2/statuses/update.json"
         
         if let token = AccessToken.loadAccessToken()?.access_token{
-            let params = ["access_token":token,"status":textView.text!]
+            let params = ["access_token":token,"status":textView.fullText()]
             
             let net = NetworkManager.sharedManager
             
@@ -127,42 +127,30 @@ extension SXComposeViewController: EmoticonsViewControllerDelegate {
     func emoticonsViewControllerDidSelectEmoticon(vc: SXEmoticonsViewController, emoticon: Emoticon) {
         println("\(emoticon.chs)")
         
-        /// 设置输入框的文字
         var str: String?
         if emoticon.chs != nil {
-//            /// 图文混排的入口
-//            var str = emoticon.chs
-//            
-//            /// 设置图像
-//            var attachement = NSTextAttachment()
-//            attachement.image = UIImage(contentsOfFile: emoticon.imagePath!)
-//            
-//            /// 设置行高避免不一样大
-//            let height = textView.font.lineHeight
-//            attachement.bounds = CGRectMake(0, 0, height, height)
-//            var attributeString = NSAttributedString(attachment: attachement)
-            
-            /// 从分类的方法中取
-            var attributeString = SXEmoteTextAttachment.attributeString(emoticon, height: textView.font.lineHeight)
-            
-            /// 替换 textView中的属性文本
-            var strM = NSMutableAttributedString(attributedString: textView.attributedText)
-            strM.replaceCharactersInRange(textView.selectedRange, withAttributedString: attributeString)
-            
-            /// 需要设置整个字符串的文本属性， 设置fontName 是 textView.font
-            let range = NSMakeRange(0, strM.length)
-            strM.addAttribute(NSFontAttributeName, value: textView.font, range: range)
-            
-            /// 先记录光标的位置再赋值，最后要恢复光标位置
-            var location = textView.selectedRange.location
-            textView.attributedText = strM
-            textView.selectedRange = NSMakeRange(location + 1, 0)
-            
-        }else if emoticon.emoji != nil {
-            /// 默认是把表情拼接到最后， 用这行代码是在光标位置插入文本
-            textView.replaceRange(textView.selectedTextRange!, withText: emoticon.emoji!)
-            
-            
+            str = emoticon.chs!
+        } else if emoticon.emoji != nil {
+            str = emoticon.emoji
+        }
+        if str == nil {
+            return
+        }
+        
+        // $$$$$ str
+        // 手动调用代理方法 - 是否能够插入文本
+        if textView(textView, shouldChangeTextInRange: textView.selectedRange, replacementText: str!) {
+            /// 设置输入框的文字
+            if emoticon.chs != nil {
+                /// 从分类的方法中取
+                textView.setTextEmoticon(emoticon)
+                // 手动调用 didChage 方法
+                textViewDidChange(textView)
+                
+            }else if emoticon.emoji != nil {
+                /// 默认是把表情拼接到最后， 用这行代码是在光标位置插入文本
+                textView.replaceRange(textView.selectedTextRange!, withText: emoticon.emoji!)
+            }
         }
     }
 }
@@ -181,8 +169,11 @@ extension SXComposeViewController:UITextViewDelegate{
             println("回车键")
         }
         
+        let len1 = (self.textView.fullText() as NSString).length
+        let len2 = (text as NSString).length
+
         /// 超过了140个之后输入不了
-        if textView.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) + text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 140 {
+        if len1 + len2 > 140 {
             return false
         }
         
@@ -190,8 +181,10 @@ extension SXComposeViewController:UITextViewDelegate{
     }
     
     func textViewDidChange(textView: UITextView) {
-        self.textView.placeHolderLabel!.hidden = !self.textView.text.isEmpty
-        sendButton.enabled = !textView.text.isEmpty
+        let fullText = self.textView.fullText()
+        
+        self.textView.placeHolderLabel!.hidden = !fullText.isEmpty
+        sendButton.enabled = !fullText.isEmpty
     }
     
     /// 滚动视图被拖拽
