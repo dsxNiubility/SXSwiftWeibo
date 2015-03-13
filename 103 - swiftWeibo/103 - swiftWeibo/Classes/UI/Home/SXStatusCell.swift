@@ -44,7 +44,7 @@ class SXStatusCell: UITableViewCell {
         didSet {
             nameLabel.text = status!.user!.name
             timeLabel.text = status!.created_at
-            sourceLabel.text = status!.source
+            sourceLabel.text = status!.sourceStr
             contentLabel.text = status!.text
             
             // 头像

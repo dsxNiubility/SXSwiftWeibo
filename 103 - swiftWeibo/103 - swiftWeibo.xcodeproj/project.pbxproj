@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D09653C1AB27FD400602614 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09653B1AB27FD400602614 /* String+Regex.swift */; };
 		1D1B59091AA8957E002B3AAD /* String+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD261D1AA8846200C90E5A /* String+Hash.swift */; };
 		1D1EE8F61AADB2A300ABD9EE /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D1EE8F51AADB2A300ABD9EE /* RefreshView.xib */; };
 		1D1EE8FB1AADB4D800ABD9EE /* SXRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1EE8FA1AADB4D800ABD9EE /* SXRefreshControl.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D09653B1AB27FD400602614 /* String+Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		1D1EE8F51AADB2A300ABD9EE /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
 		1D1EE8FA1AADB4D800ABD9EE /* SXRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXRefreshControl.swift; sourceTree = "<group>"; };
 		1D1EE8FC1AADE65300ABD9EE /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				1DBD26151AA8760C00C90E5A /* SXSwiftJ2M.swift */,
 				1DBD26131AA875BC00C90E5A /* SimpleNetwork.swift */,
 				1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */,
+				1D09653B1AB27FD400602614 /* String+Regex.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				1DBD25FB1AA821B200C90E5A /* SXDiscoverViewController.swift in Sources */,
 				1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */,
 				1DBD260B1AA8270800C90E5A /* SXMainTabBar.swift in Sources */,
+				1D09653C1AB27FD400602614 /* String+Regex.swift in Sources */,
 				1D58E10A1AB05834007E29FC /* SXEmoticonsViewController.swift in Sources */,
 				1DBD25F71AA8217600C90E5A /* SXMainTabBarController.swift in Sources */,
 				1DBD25FD1AA821C500C90E5A /* SXMessageViewController.swift in Sources */,

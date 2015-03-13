@@ -108,6 +108,12 @@ class Status: NSObject, J2MProtocol {
     var text: String?
     ///  微博来源
     var source: String?
+    
+    /// 去掉 href 的来源字符串
+    var sourceStr: String {
+        return source?.removeHref() ?? ""
+    }
+    
     ///  转发数
     var reposts_count: Int = 0
     ///  评论数
