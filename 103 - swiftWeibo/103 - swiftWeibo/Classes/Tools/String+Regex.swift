@@ -43,5 +43,78 @@ extension String {
         return nil
     }
 
+    
+    /// 过滤表情字符串，生成属性字符串
+    /**
+    1. 匹配所有的 [xxx] 的内容
+    2. 准备结果属性字符串
+    
+    3. 倒着遍历查询到的匹配结果
+        3.1 用查找到的字符串，去表情数组中查找对应的表情对象
+        3.2 用表情对象生成属性文本(使用 图片 attachment 替换结果字符串中 range 对应的 文本)
+    
+    4. 返回结果
+    */
+    func emoticonString() -> NSAttributedString? {
+        
+        // 1. pattern - [] 是正则表达式的特殊字符
+        let pattern = "\\[(.*?)\\]"
+        
+        // 2. regex
+        let regex = NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive | NSRegularExpressionOptions.DotMatchesLineSeparators, error: nil)!
+        
+        let text = self as NSString
+        // 3. 多个匹配，[NSTextCheckingResult]
+        let checkingResults = regex.matchesInString(self, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, text.length))
+        
+        // !!! 结果字符串
+        var attributeString = NSMutableAttributedString(string: self)
+        
+        // 4. 倒着遍历匹配结果
+        for var i = checkingResults.count - 1; i >= 0; i-- {
+            let result = checkingResults[i] as! NSTextCheckingResult
+            
+            // 表情符号的文字
+            let str = text.substringWithRange(result.rangeAtIndex(0))
+            let e = emoticon(str)
+            
+            // 替换图像
+            if e?.png != nil {
+                // 生成图片附件，替换属性文本
+                let attString = SXEmoteTextAttachment.attributeString(e!, height: 18)
+                
+                // 替换属性文本
+                attributeString.replaceCharactersInRange(result.rangeAtIndex(0), withAttributedString: attString)
+            }
+        }
+        //        for result in checkingResults {
+        //            println(text.substringWithRange(result.rangeAtIndex(0)))
+        //
+        //            // 表情符号的文字
+        //            let str = text.substringWithRange(result.rangeAtIndex(0))
+        //            let e = emoticon(str)
+        //
+        //            println(e?.png)
+        //        }
+        
+        return attributeString
+    }
+    
+    /// 在表情列表中查找表情符号对象
+    private func emoticon(str: String) -> Emoticon? {
+        let emoticons = EmoticonList.sharedEmoticonList.allEmoticons
+        
+        // 遍历数组
+        var emoticon: Emoticon?
+        
+        for e in emoticons {
+            if e.chs == str {
+                emoticon = e
+                break
+            }
+        }
+        
+        return emoticon
+    }
 
 }

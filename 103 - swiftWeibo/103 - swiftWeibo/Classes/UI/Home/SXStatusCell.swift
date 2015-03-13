@@ -45,7 +45,9 @@ class SXStatusCell: UITableViewCell {
             nameLabel.text = status!.user!.name
             timeLabel.text = status!.created_at
             sourceLabel.text = status!.sourceStr
-            contentLabel.text = status!.text
+            
+            /// 显示的时候过滤，有图片就显示图片 要用复文本
+            contentLabel.attributedText = status!.text?.emoticonString() ?? NSAttributedString(string: status!.text!)
             
             // 头像
             if let iconUrl = status?.user?.profile_image_url {

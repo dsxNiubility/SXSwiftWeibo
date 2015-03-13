@@ -9,6 +9,34 @@
 
 import Foundation
 
+/// 表情符号数组单例，专供查询使用
+class EmoticonList {
+    
+    /// 单例
+    private static let instance = EmoticonList()
+    class var sharedEmoticonList: EmoticonList  {
+        return instance
+    }
+    /// 所有自定义表情的大数组，便于查询
+    var allEmoticons: [Emoticon]
+    
+    init () {
+        // 实例化表情数组
+        allEmoticons = [Emoticon]()
+        
+        // 填充数据
+        // 1. 加载分组数据中的表情
+        let sections = EmoticonsSection.loadEmoticons()
+        
+        // 2. 合并数组（提示：可以把 emoji 去掉）
+        for sec in sections {
+            allEmoticons += sec.emoticons
+        }
+    }
+    
+}
+
+
 /// 表情符号分组
 class EmoticonsSection {
     
