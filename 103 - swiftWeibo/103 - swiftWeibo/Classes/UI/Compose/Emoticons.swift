@@ -102,10 +102,13 @@ class EmoticonsSection {
                 let em = Emoticon(dict: dict, path: emoticonSection.path)
                 emoticonSection.emoticons.append(em)
             }
-            /// 再添加一个空的，给末尾的删除按钮 留个位置
-            emoticonSection.emoticons.append(Emoticon(dict: nil, path: nil))
             
-            /// 将对象添加到数组
+            /// 添加删除按钮的模型
+            let em = Emoticon(dict: nil, path: nil)
+            em.isDeleteButton = true
+            emoticonSection.emoticons.append(em)
+            
+            /// 将每一种添加到大数组
             result.append(emoticonSection)
         }
         return result
@@ -129,6 +132,8 @@ class Emoticon {
     var png: String?
     /// 图像的完整路径
     var imagePath: String?
+    /// 是否是删除按钮
+    var isDeleteButton = false
     
     init(dict:NSDictionary?,path: String? ) {
         code = dict?["code"] as? String

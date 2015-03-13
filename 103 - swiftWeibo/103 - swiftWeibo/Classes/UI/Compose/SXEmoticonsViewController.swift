@@ -115,6 +115,11 @@ class EmoticonCell: UICollectionViewCell {
             }
             
             emojiLabel.text = emoticon?.emoji
+            
+            // 是否是删除按钮
+            if emoticon!.isDeleteButton {
+                iconView.image = UIImage(named: "compose_emotion_delete_highlighted")
+            }
         }
     }
 }
