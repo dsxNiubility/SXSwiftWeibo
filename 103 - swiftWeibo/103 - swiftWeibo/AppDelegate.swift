@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        SQLite.sharedSQLite.openDatabase("sxweibo.db")
+        
         /// 关于accessToken
         if let token = AccessToken.loadAccessToken() {
             println(token)

@@ -24,6 +24,9 @@
 		1D5C4E741AB1F092006AA087 /* SXComposeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C4E731AB1F092006AA087 /* SXComposeTextView.swift */; };
 		1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
 		1D6175561AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
+		1DB1D3081AB545F000CB5FFF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB1D3071AB545F000CB5FFF /* libsqlite3.dylib */; };
+		1DB1D30B1AB5461300CB5FFF /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB1D3091AB5461300CB5FFF /* SQLite.swift */; };
+		1DB1D30E1AB5463C00CB5FFF /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB1D30D1AB5463C00CB5FFF /* String+Path.swift */; };
 		1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
 		1DB4138E1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
 		1DB4C9ED1AA6B2A500CA4B38 /* AccessTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4C9EC1AA6B2A500CA4B38 /* AccessTokenTests.swift */; };
@@ -84,6 +87,9 @@
 		1D5C4E711AB1EF29006AA087 /* SXEmoteTextAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXEmoteTextAttachment.swift; sourceTree = "<group>"; };
 		1D5C4E731AB1F092006AA087 /* SXComposeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXComposeTextView.swift; sourceTree = "<group>"; };
 		1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		1DB1D3071AB545F000CB5FFF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		1DB1D3091AB5461300CB5FFF /* SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
+		1DB1D30D1AB5463C00CB5FFF /* String+Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
 		1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1DB4C9EC1AA6B2A500CA4B38 /* AccessTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenTests.swift; sourceTree = "<group>"; };
 		1DBD25F61AA8217600C90E5A /* SXMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXMainTabBarController.swift; sourceTree = "<group>"; };
@@ -127,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DB1D3081AB545F000CB5FFF /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +174,7 @@
 		1DCF98F01AA4278D00C2EFF0 = {
 			isa = PBXGroup;
 			children = (
+				1DB1D3071AB545F000CB5FFF /* libsqlite3.dylib */,
 				1DCF98FB1AA4278D00C2EFF0 /* 103 - swiftWeibo */,
 				1DCF99111AA4278E00C2EFF0 /* 103 - swiftWeiboTests */,
 				1DCF98FA1AA4278D00C2EFF0 /* Products */,
@@ -248,7 +256,9 @@
 		1DCF99201AA4295600C2EFF0 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				1DB1D3091AB5461300CB5FFF /* SQLite.swift */,
 				1DBD261D1AA8846200C90E5A /* String+Hash.swift */,
+				1DB1D30D1AB5463C00CB5FFF /* String+Path.swift */,
 				1DBD26151AA8760C00C90E5A /* SXSwiftJ2M.swift */,
 				1DBD26131AA875BC00C90E5A /* SimpleNetwork.swift */,
 				1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */,
@@ -465,6 +475,7 @@
 				1DBD25FF1AA821DC00C90E5A /* SXProfileViewController.swift in Sources */,
 				1DBD260E1AA86F1400C90E5A /* SXComposeViewController.swift in Sources */,
 				1D24AE8B1AAC1E6A00BB70DD /* SXPhotoBrowserlViewController.swift in Sources */,
+				1DB1D30E1AB5463C00CB5FFF /* String+Path.swift in Sources */,
 				1DBD261E1AA8846200C90E5A /* String+Hash.swift in Sources */,
 				1DBD25F91AA8219A00C90E5A /* SXHomeViewController.swift in Sources */,
 				1DBD261B1AA877D400C90E5A /* StatusesData.swift in Sources */,
@@ -484,6 +495,7 @@
 				1DBD25FB1AA821B200C90E5A /* SXDiscoverViewController.swift in Sources */,
 				1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */,
 				1DBD260B1AA8270800C90E5A /* SXMainTabBar.swift in Sources */,
+				1DB1D30B1AB5461300CB5FFF /* SQLite.swift in Sources */,
 				1D09653C1AB27FD400602614 /* String+Regex.swift in Sources */,
 				1D58E10A1AB05834007E29FC /* SXEmoticonsViewController.swift in Sources */,
 				1DBD25F71AA8217600C90E5A /* SXMainTabBarController.swift in Sources */,

@@ -8,6 +8,7 @@
 //
 
 #import <CommonCrypto/CommonCrypto.h>
+#import <sqlite3.h>
 #import "SVProgressHUD.h"
 
 #ifndef _03___swiftWeibo_SwiftWeibo_Bridge_h

@@ -54,7 +54,7 @@ class SXEmoticonsViewController: UIViewController {
 }
 
 protocol EmoticonsViewControllerDelegate: NSObjectProtocol {
-    /// 选中了某一个标枪
+    /// 选中了某一个表情
     func emoticonsViewControllerDidSelectEmoticon(vc:SXEmoticonsViewController, emoticon: Emoticon)
 }
 
@@ -68,10 +68,6 @@ extension SXEmoticonsViewController:UICollectionViewDataSource,UICollectionViewD
     
     /// cell 被选中
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        // 通过代理传递撰写微博视图控制器做后续处理
-        println(emoticon(indexPath))
-        // 3. 通知代理执行方法，注意这里的 ?
         // 使用 ? 不需要判断代理是否实现方法
         delegate?.emoticonsViewControllerDidSelectEmoticon(self, emoticon: emoticon(indexPath))
     }
@@ -90,8 +86,6 @@ extension SXEmoticonsViewController:UICollectionViewDataSource,UICollectionViewD
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EmoticonsCell", forIndexPath: indexPath) as! EmoticonCell
-        
-        
         /// 属性赋值
         cell.emoticon = emoticonSection![indexPath.section].emoticons[indexPath.item]
         
@@ -99,9 +93,8 @@ extension SXEmoticonsViewController:UICollectionViewDataSource,UICollectionViewD
     }
 }
 
-/// 表情的 cell
+/// 自定义表情cell
 class EmoticonCell: UICollectionViewCell {
-    
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var emojiLabel: UILabel!
     
