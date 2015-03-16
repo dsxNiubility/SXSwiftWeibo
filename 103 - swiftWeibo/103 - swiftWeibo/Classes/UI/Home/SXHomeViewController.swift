@@ -45,7 +45,7 @@ class SXHomeViewController: UITableViewController {
             println("上啦加载数据啦！！！！")
             
             /// 获取到maxId
-            if let maxId = self.statusData?.statuses?.last?.id{
+            if let maxId = weakSelf?.statusData?.statuses?.last?.id{
                 
                 weakSelf?.loadData(maxId - 1)
             }

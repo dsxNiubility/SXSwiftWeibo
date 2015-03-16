@@ -34,6 +34,11 @@ class StatusesData: NSObject, J2MProtocol {
     ///  一旦加载成功，负责字典转模型，回调传回转换过的模型数据
     class func loadStatus(maxId:Int = 0,completion: (data: StatusesData?, error: NSError?)->()) {
         
+        /// 上拉刷新
+        if maxId > 0 {
+            
+        }
+        
         let net = NetworkManager.sharedManager
         if let token = AccessToken.loadAccessToken()?.access_token {
             let params = ["access_token": token,"max_id":"\(maxId)"]
@@ -54,6 +59,11 @@ class StatusesData: NSObject, J2MProtocol {
                 /// 保存微博数组
                 self.saveStatusData(data?.statuses)
                 
+                /// 第一次加载时不需要设置刷新标记
+                if maxId != 0 {
+                self.updateRefreshState(maxId)
+                }
+                
                 // 如果有下载图像的 url，就先下载图像
                 if let urls = StatusesData.pictureURLs(data?.statuses) {
                     net.downloadImages(urls) { (_, _) -> () in
@@ -67,6 +77,14 @@ class StatusesData: NSObject, J2MProtocol {
 
             }
         }
+    }
+    
+    ///  更新 maxId & topId 之间记录的刷新状态
+    class func updateRefreshState(maxId: Int) {
+        let sql = "UPDATE T_Status SET refresh = 1 \n" +
+        "WHERE id > \(maxId);"
+        println(maxId)
+        SQLite.sharedSQLite.execSQL(sql)
     }
     
     /// 保存微博数据 （传进来一个模型数组）

@@ -18,9 +18,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SQLite.sharedSQLite.openDatabase("sxweibo.db")
         
+        // 加载数据测试代码 － 第一次刷新，都是从服务器加载数据！
         StatusesData.loadStatus(maxId: 0) { (data, error) -> () in
-            println("加载数据OK")
+            // 第一次加载的数据
+            if let statuses = data?.statuses {
+                // 模拟上拉刷新
+                // 取出最后一条记录中的 id，id -1 -> maxId
+                let mId = statuses.last!.id
+                let tId = statuses.first!.id
+                println("maxId \(mId) ---- topId \(tId)")
+                
+                // 上拉刷新
+                StatusesData.loadStatus(maxId: (mId - 1), completion: { (data, error) -> () in
+                    println("第一次上拉刷新结束")
+                    
+                    // 再一次加载的数据
+                    if let statuses = data?.statuses {
+                        // 模拟上拉刷新
+                        // 取出最后一条记录中的 id，id -1 -> maxId
+                        let mId = statuses.last!.id
+                        let tId = statuses.first!.id
+                        println("2222 maxId \(mId) ---- topId \(tId)")
+                        
+                        // 上拉刷新
+                        StatusesData.loadStatus(maxId: (mId - 1), completion: { (data, error) -> () in
+                            println("第二次上拉刷新结束")
+                        })
+                    }
+                })
+            }
         }
+
         
         /// 关于accessToken
         if let token = AccessToken.loadAccessToken() {
