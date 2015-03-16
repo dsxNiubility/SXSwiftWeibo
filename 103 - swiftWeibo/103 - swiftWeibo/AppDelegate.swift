@@ -18,6 +18,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SQLite.sharedSQLite.openDatabase("sxweibo.db")
         
+        /// 关于accessToken
+        if let token = AccessToken.loadAccessToken() {
+            println(token)
+            println(token.uid)
+            
+            showMainInterface()
+        }else{
+            // 添加通知监听，监听用户登录成功
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "showMainInterface", name: WB_Login_Successed_Notification, object: nil)
+        }
+        
+        return true
+    }
+    
+    /// 测试两次上拉刷新
+    func loadTwoRefreshDemo() {
         // 加载数据测试代码 － 第一次刷新，都是从服务器加载数据！
         StatusesData.loadStatus(maxId: 0) { (data, error) -> () in
             // 第一次加载的数据
@@ -48,20 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 })
             }
         }
-
-        
-        /// 关于accessToken
-        if let token = AccessToken.loadAccessToken() {
-            println(token)
-            println(token.uid)
-            
-            showMainInterface()
-        }else{
-            // 添加通知监听，监听用户登录成功
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "showMainInterface", name: WB_Login_Successed_Notification, object: nil)
-        }
-        
-        return true
     }
     
     func showMainInterface(){

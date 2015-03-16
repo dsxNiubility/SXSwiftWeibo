@@ -57,6 +57,34 @@ class UserInfo: NSObject {
     
     var mbImage:UIImage?
     
+    // 使用记录集实例化用户数据
+    init(record: [AnyObject]?) {
+        // id userId, screen_name, name, profile_image_url, avatar_large, created_at user_created_at, verified, mbrank
+        if record == nil {
+            return
+        }
+        
+        id = record![0] as! Int
+        screen_name = record![1] as? String
+        name = record![2] as? String
+        profile_image_url = record![3] as? String
+        avatar_large = record![4] as? String
+        created_at = record![5] as? String
+        verified = record![6] as! Bool
+        mbrank = record![7] as! Int
+    }
+    
+    ///  使用用户id从本地数据库加载用户记录
+    convenience init(pkId: Int) {
+        let sql = "SELECT id, screen_name, name, profile_image_url, avatar_large, created_at, verified, mbrank \n" +
+        "FROM T_User WHERE id = \(pkId)"
+        
+        let record = SQLite.sharedSQLite.execRow(sql)
+        self.init(record: record)
+    }
+    
+
+    
     
     // 插入 或者 更新用户数据
     func insertDB() -> Bool {

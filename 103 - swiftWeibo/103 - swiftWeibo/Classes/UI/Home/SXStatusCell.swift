@@ -42,7 +42,7 @@ class SXStatusCell: UITableViewCell {
     /// 微博数据
     var status: Status? {
         didSet {
-            nameLabel.text = status!.user!.name
+            nameLabel.text = status?.user?.name ?? ""
             timeLabel.text = status!.created_at
             sourceLabel.text = status!.sourceStr
             
@@ -77,7 +77,7 @@ class SXStatusCell: UITableViewCell {
             
             /// 设置转发的微博文字
             if status?.retweeted_status != nil{
-                forwardLabel.text = status!.retweeted_status!.user!.name! + ":" + status!.retweeted_status!.text!
+                forwardLabel.text = (status?.retweeted_status?.user?.name ?? "") + ":" + (status?.retweeted_status?.text ?? "")
             }
         }
     }
