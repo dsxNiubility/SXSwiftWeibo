@@ -56,4 +56,21 @@ class UserInfo: NSObject {
     }
     
     var mbImage:UIImage?
+    
+    
+    // 插入 或者 更新用户数据
+    func insertDB() -> Bool {
+        
+        // INSERT OR REPLACE 能够插入或者更新 记录
+        // !!! 字段中，必须要包含 主键
+        let sql = "INSERT OR REPLACE INTO T_User \n" +
+            "(id, screen_name, name, profile_image_url, avatar_large, created_at, verified, mbrank) \n" +
+            "VALUES \n" +
+        "(\(id), '\(screen_name!)', '\(name!)', '\(profile_image_url!)', '\(avatar_large!)', '\(created_at!)', \(Int(verified)), \(mbrank))"
+        
+        // 打印出来的 SQL 可以直接粘贴进行调试
+        println(sql)
+        
+        return SQLite.sharedSQLite.execSQL(sql)
+    }
 }

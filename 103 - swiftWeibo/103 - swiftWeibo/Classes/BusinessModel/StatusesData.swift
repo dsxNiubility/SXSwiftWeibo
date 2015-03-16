@@ -51,6 +51,9 @@ class StatusesData: NSObject, J2MProtocol {
                 var modelTools = SXSwiftJ2M.sharedManager
                 var data = modelTools.swiftObjWithDict(result as! NSDictionary, cls: StatusesData.self) as? StatusesData
                 
+                /// 保存微博数组
+                self.saveStatusData(data?.statuses)
+                
                 // 如果有下载图像的 url，就先下载图像
                 if let urls = StatusesData.pictureURLs(data?.statuses) {
                     net.downloadImages(urls) { (_, _) -> () in
@@ -65,6 +68,62 @@ class StatusesData: NSObject, J2MProtocol {
             }
         }
     }
+    
+    /// 保存微博数据 （传进来一个模型数组）
+    class func saveStatusData (statuses:[Status]?){
+        if statuses == nil{
+            return
+        }
+        
+        /// 开启事务 然后下面提交事务
+        SQLite.sharedSQLite.execSQL("BEGIN TRANSACTION")
+        
+        for s in statuses!{
+            
+            /// 配图记录保存
+            if !StatusPictureURL.savePictures(s.id, pictures: s.pic_urls) {
+                
+                /// 一旦出现错误 就回滚 放弃这一轮的所有操作
+                println("配图插入出现错误")
+                SQLite.sharedSQLite.execSQL("ROLLBACK TRANSACTION")
+                break
+            }
+            
+            /// 用户记录保存
+            if s.user != nil{
+                if !s.user!.insertDB() {
+                    println("用户数据插入出现错误")
+                    SQLite.sharedSQLite.execSQL("ROLLBACK TRANSACTION")
+                    break
+                }
+            }
+            
+            // 3. 微博记录
+            if !s.insertDB() {
+                println("插入微博数据错误")
+                SQLite.sharedSQLite.execSQL("ROLLBACK TRANSACTION")
+                break
+            }
+            
+            // 4. 转发微博的记录（用户/配图）
+            if s.retweeted_status != nil {
+                // 存在转发微博
+                // 保存转发微博
+                if !s.retweeted_status!.insertDB() {
+                    println("插入转发微博数据错误")
+                    SQLite.sharedSQLite.execSQL("ROLLBACK TRANSACTION")
+                    break
+                }
+            }
+
+        }
+        
+        SQLite.sharedSQLite.execSQL("COMMIT TRANSACTION")
+    }
+    
+
+    
+    
     
     ///  取出给定的微博数据中所有图片的 URL 数组
     ///
@@ -153,6 +212,28 @@ class Status: NSObject, J2MProtocol {
         "user": "\(UserInfo.self)",
         "retweeted_status": "\(Status.self)",]
     }
+    
+    // 保存微博数据
+    func insertDB() -> Bool {
+        // 如果 Xcode 6.3 Bata 2/3 直接写 ?? 会非常非常慢,要先拆开
+        let userId = user?.id ?? 0
+        let retId = retweeted_status?.id ?? 0
+        
+        // 判断数据是否已经存在，如果存在就不再插入
+        var sql = "SELECT count(*) FROM T_Status WHERE id = \(id);"
+        if SQLite.sharedSQLite.execCount(sql) > 0 {
+            return true
+        }
+        
+        // 之所以只使用 INSERT，是因为 INSERT AND REPLACE 会在更新数据的时候，直接将 refresh 重新设置为 0
+        sql = "INSERT INTO T_Status \n" +
+            "(id, text, source, created_at, reposts_count, comments_count, attitudes_count, userId, retweetedId) \n" +
+            "VALUES \n" +
+        "(\(id), '\(text!)', '\(source!)', '\(created_at!)', \(reposts_count), \(comments_count), \(attitudes_count), \(userId), \(retId));"
+        
+        return SQLite.sharedSQLite.execSQL(sql)
+    }
+
 }
 
 ///  微博配图模型
@@ -166,4 +247,35 @@ class StatusPictureURL: NSObject {
     }
     ///  大图 URL
     var large_pic: String?
+    
+    /// MARK: - 对配图进行缓存
+    /// 把配图数据保存到数据库 （传入一个微博ID和配图的链接数组）
+    class func savePictures(statusId:Int,pictures:[StatusPictureURL]?) -> Bool {
+        
+        if pictures == nil {
+            /// 如果微博没有图片 直接就当执行完成了
+            return true
+        }
+        
+        let sql = "SELECT count(*) FROM T_StatusPic WHERE statusId = \(statusId);"
+        if  SQLite.sharedSQLite.execCount(sql) > 0 {
+            return true
+        }
+        
+        for pic in pictures! {
+            
+            /// 只要遍历中有一个图片失败，就返回一个false，那边会进行回滚
+            if !pic.insertDB(statusId){
+                return false
+            }
+        }
+        return true
+    }
+    
+    /// 插入到数据库
+    func insertDB(statusId:Int) -> Bool {
+        let sql = "INSERT INTO T_StatusPic (statusId, thumbnail_pic) VALUES (\(statusId), '\(thumbnail_pic!)');"
+        
+        return SQLite.sharedSQLite.execSQL(sql)
+    }
 }

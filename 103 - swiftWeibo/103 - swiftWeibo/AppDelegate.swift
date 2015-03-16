@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SQLite.sharedSQLite.openDatabase("sxweibo.db")
         
+        StatusesData.loadStatus(maxId: 0) { (data, error) -> () in
+            println("加载数据OK")
+        }
+        
         /// 关于accessToken
         if let token = AccessToken.loadAccessToken() {
             println(token)
