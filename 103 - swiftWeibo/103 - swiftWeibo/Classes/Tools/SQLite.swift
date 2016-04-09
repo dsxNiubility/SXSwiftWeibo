@@ -1,11 +1,3 @@
-//
-//  SQLite.swift
-//  01-工资表
-//
-//  Created by 刘凡 on 15/3/14.
-//  Copyright (c) 2015年 itheima. All rights reserved.
-//
-
 import Foundation
 
 class SQLite {
@@ -22,7 +14,7 @@ class SQLite {
     ///  打开数据库
     func openDatabase(dbName: String) -> Bool {
         let path = dbName.documentPath()
-        println(path)
+        print(path)
         if (sqlite3_open(path.cStringUsingEncoding(NSUTF8StringEncoding)!, &db) == SQLITE_OK) {
             return createTable()
         } else {
@@ -33,7 +25,7 @@ class SQLite {
     ///  创建数据表
     private func createTable() -> Bool {
         var result = false
-        var sql = "CREATE TABLE IF NOT EXISTS T_Status ( \n" +
+        let sql = "CREATE TABLE IF NOT EXISTS T_Status ( \n" +
         "id integer NOT NULL, \n" +
         "text TEXT NOT NULL DEFAULT '', \n" +
         "source TEXT NOT NULL DEFAULT '', \n" +
@@ -122,12 +114,12 @@ class SQLite {
             case SQLITE_INTEGER:
                 array.append(Int(sqlite3_column_int64(stmt, i)))
             case SQLITE_TEXT:
-                var chars: UnsafePointer<CChar> = (UnsafePointer<CChar>)(sqlite3_column_text(stmt, i))
+                let chars: UnsafePointer<CChar> = (UnsafePointer<CChar>)(sqlite3_column_text(stmt, i))
                 array.append(String.fromCString(chars)!)
             case SQLITE_NULL:
                 array.append(NSNull())
             case let type:
-                println("不支持的类型 \(type)")
+                print("不支持的类型 \(type)")
             }
         }
         return array

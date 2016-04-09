@@ -51,7 +51,7 @@ class SXComposeTextView: UITextView {
         var result = String()
         let textRange = NSMakeRange(0, attributedText.length)
         
-        attributedText.enumerateAttributesInRange(textRange, options: NSAttributedStringEnumerationOptions.allZeros, usingBlock: { (dict, range, _) -> Void in
+        attributedText.enumerateAttributesInRange(textRange, options: NSAttributedStringEnumerationOptions(), usingBlock: { (dict, range, _) -> Void in
             
             if let attachment = dict["NSAttachment"] as? SXEmoteTextAttachment {
                 // 图片
@@ -60,7 +60,7 @@ class SXComposeTextView: UITextView {
                 result += (self.attributedText.string as NSString).substringWithRange(range)
             }
         })
-        println("微博文本：\(result)")
+        print("微博文本：\(result)")
         
         return result
     }

@@ -93,8 +93,8 @@ extension SXPhotoBrowserlViewController:UICollectionViewDataSource {
         cell.imageView?.image = nil
         cell.urlString = urls![indexPath.item]
         
-        println(cell.urlString)
-        println(indexPath.item)
+        print(cell.urlString)
+        print(indexPath.item)
         
         return cell
     }
@@ -118,7 +118,7 @@ class PhotoCell:UICollectionViewCell,UIScrollViewDelegate {
     }
     
     /// 形变结束后
-    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView!, atScale scale: CGFloat) {
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
         
         if isShortImage{
             let y = (frame.size.height - imageView!.frame.size.height) * 0.5
@@ -137,7 +137,7 @@ class PhotoCell:UICollectionViewCell,UIScrollViewDelegate {
             net.requestImage(urlString!) { (result, error) -> () in
                 if result != nil{
                     
-                    var image = result as! UIImage
+                    let image = result as! UIImage
 //                    self.imageView!.image = image
 //                    self.calcImageSize(image.size)
                     self.setupImageView(image)
@@ -151,8 +151,8 @@ class PhotoCell:UICollectionViewCell,UIScrollViewDelegate {
     /// 通过图像大小处理图片（弃用）
     func calcImageSize(size:CGSize){
         
-        var w = size.width
-        var h = size.height
+        let w = size.width
+        let h = size.height
         
         imageView!.frame = bounds
         if(h/w > 2){
@@ -171,8 +171,8 @@ class PhotoCell:UICollectionViewCell,UIScrollViewDelegate {
         scrollView?.contentSize = CGSizeZero
         scrollView?.contentOffset = CGPointZero
         
-        var imageSize = image.size
-        var screenSize = self.bounds.size
+        let imageSize = image.size
+        let screenSize = self.bounds.size
         
         let h = screenSize.width / imageSize.width * imageSize.height
         

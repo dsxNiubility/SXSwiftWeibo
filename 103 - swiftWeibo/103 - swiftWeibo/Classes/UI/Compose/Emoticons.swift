@@ -59,7 +59,7 @@ class EmoticonsSection {
     
     /// 加载表情符号的分组数据
     class func loadEmoticons() -> [EmoticonsSection] {
-        let path = NSBundle.mainBundle().bundlePath.stringByAppendingPathComponent("Emoticons/emoticons.plist")
+        let path = (NSBundle.mainBundle().bundlePath as NSString).stringByAppendingPathComponent("Emoticons/emoticons.plist")
         
         /// array是用大plist加载的数组
         var array = NSArray(contentsOfFile: path)
@@ -88,15 +88,15 @@ class EmoticonsSection {
         
         /// 取出主目录数组中的数据，加载不同目录的info.plist
         let group_path = dict["emoticon_group_path"] as! String
-        let path = NSBundle.mainBundle().bundlePath.stringByAppendingPathComponent("Emoticons/\(group_path)/info.plist")
+        let path = (NSBundle.mainBundle().bundlePath as NSString).stringByAppendingPathComponent("Emoticons/\(group_path)/info.plist")
         
         /// infoDict是info的小字典
-        var infoDict = NSDictionary(contentsOfFile: path)!
+        let infoDict = NSDictionary(contentsOfFile: path)!
         
         /// list是每一个表情的组合的数组
         let list = infoDict["emoticon_group_emoticons"] as! NSArray
         
-        var result = loadArrayEmoticons(list, dict: dict)
+        let result = loadArrayEmoticons(list, dict: dict)
         
         return result
     }
@@ -115,7 +115,7 @@ class EmoticonsSection {
         for i in 0..<objCount {
             
             // 通过每一个info建立每一种的表情数组
-            var emoticonSection = EmoticonsSection(dict: dict)
+            let emoticonSection = EmoticonsSection(dict: dict)
             
             for count in 0..<20 {
                 let j = count + i * emoticonCount
@@ -170,7 +170,7 @@ class Emoticon {
         png = dict?["png"] as? String
         
         if path != nil && png != nil {
-            imagePath = NSBundle.mainBundle().bundlePath.stringByAppendingPathComponent("Emoticons/\(path!)/\(png!)")
+            imagePath = (NSBundle.mainBundle().bundlePath as NSString).stringByAppendingPathComponent("Emoticons/\(path!)/\(png!)")
         }
         
         /// 计算 emoji

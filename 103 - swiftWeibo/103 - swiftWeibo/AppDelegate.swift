@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// 关于accessToken
         if let token = AccessToken.loadAccessToken() {
-            println(token)
-            println(token.uid)
+            print(token)
+            print(token.uid)
             
             showMainInterface()
         }else{
@@ -35,18 +35,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// 测试两次上拉刷新
     func loadTwoRefreshDemo() {
         // 加载数据测试代码 － 第一次刷新，都是从服务器加载数据！
-        StatusesData.loadStatus(maxId: 0) { (data, error) -> () in
+        StatusesData.loadStatus(0) { (data, error) -> () in
             // 第一次加载的数据
             if let statuses = data?.statuses {
                 // 模拟上拉刷新
                 // 取出最后一条记录中的 id，id -1 -> maxId
                 let mId = statuses.last!.id
                 let tId = statuses.first!.id
-                println("maxId \(mId) ---- topId \(tId)")
+                print("maxId \(mId) ---- topId \(tId)")
                 
                 // 上拉刷新
                 StatusesData.loadStatus(maxId: (mId - 1), completion: { (data, error) -> () in
-                    println("第一次上拉刷新结束")
+                    print("第一次上拉刷新结束")
                     
                     // 再一次加载的数据
                     if let statuses = data?.statuses {
@@ -54,11 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         // 取出最后一条记录中的 id，id -1 -> maxId
                         let mId = statuses.last!.id
                         let tId = statuses.first!.id
-                        println("2222 maxId \(mId) ---- topId \(tId)")
+                        print("2222 maxId \(mId) ---- topId \(tId)")
                         
                         // 上拉刷新
                         StatusesData.loadStatus(maxId: (mId - 1), completion: { (data, error) -> () in
-                            println("第二次上拉刷新结束")
+                            print("第二次上拉刷新结束")
                         })
                     }
                 })

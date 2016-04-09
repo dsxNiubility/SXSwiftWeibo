@@ -1,11 +1,3 @@
-//
-//  SimpleNetwork.swift
-//  SimpleNetwork
-//
-//  Created by apple on 15/3/2.
-//  Copyright (c) 2015年 heima. All rights reserved.
-//
-
 import Foundation
 
 ///  常用的网络访问方法
@@ -24,8 +16,8 @@ import Foundation
     /**
     异步加载图像
     
-    :param: urlString  URLstring
-    :param: completion 完成时的回调
+    - parameter urlString:  URLstring
+    - parameter completion: 完成时的回调
     */
     func requestImage(urlString:String,_ completion:Completion){
         downloadImage(urlString) {(result, error) -> () in
@@ -36,7 +28,7 @@ import Foundation
                 /// 取到图片保存在沙盒的路径 并搞出来
                 let path = self.fullImageCachePath(urlString)
                 /// 从沙盒加载到内存，这个方法可以在不需要时自动释放
-                var image = UIImage(contentsOfFile: path)
+                let image = UIImage(contentsOfFile: path)
                 
                 dispatch_async(dispatch_get_main_queue()){ () -> Void in
                     completion(result: image, error: nil)
@@ -48,8 +40,8 @@ import Foundation
     /**
     下载多张图片
     
-    :param: urlString  下载地址数组
-    :param: completion 回调
+    - parameter urlString:  下载地址数组
+    - parameter completion: 回调
     */
     func downloadImages(urls:[String], _ completion : Completion){
         
@@ -74,13 +66,13 @@ import Foundation
     /**
     下载图像并且保存到沙盒
     
-    :param: urlString  urlString
-    :param: completion 完成回调
+    - parameter urlString:  urlString
+    - parameter completion: 完成回调
     */
     func downloadImage(urlString:String, _ completion : Completion){
         var path = urlString.md5
         
-        path = cachePath!.stringByAppendingPathComponent(path)
+        path = (cachePath! as NSString).stringByAppendingPathComponent(path)
         
         if NSFileManager.defaultManager().fileExistsAtPath(path){
 //            println("\(urlString) 图片已经被缓存")
@@ -97,8 +89,11 @@ import Foundation
                 return
             }
             
-            /// 复制到指定位置
-            NSFileManager.defaultManager().copyItemAtPath(location.path!, toPath: path, error: nil)  // $$$$$
+            do {
+                /// 复制到指定位置
+                try NSFileManager.defaultManager().copyItemAtPath(location.path!, toPath: path)
+            } catch _ {
+            }  // $$$$$
             
             completion(result: nil, error: nil)
             
@@ -112,43 +107,49 @@ import Foundation
     
     /// 获取完整的URL路径
     func fullImageCachePath(urlString:String) ->String{
-        var path = urlString.md5
-        return cachePath!.stringByAppendingPathComponent(path)
+        let path = urlString.md5
+        return (cachePath! as NSString).stringByAppendingPathComponent(path)
     }
     
 /// MARK: - 完整的图像缓存路径
     /// 完整的图像缓存路径
     private lazy var cachePath:String? = {
         var path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last as!String
-        path = path.stringByAppendingPathComponent(imageCachePath)
+        path = (path as NSString).stringByAppendingPathComponent(imageCachePath)
         
         /// 这个属性是判断是否是文件夹
         var isDirectory : ObjCBool = true   // $$$$$
         
         let exists = NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory: &isDirectory)
         
-        println("打印缓存地址isDirectory： \(isDirectory) exists \(exists) path: \(path)")
+        print("打印缓存地址isDirectory： \(isDirectory) exists \(exists) path: \(path)")
         
         /// 如果文件存在并且还不是文件夹，就直接删了
         if exists && !isDirectory{
-            NSFileManager.defaultManager().removeItemAtPath(path, error: nil)
+            do {
+                try NSFileManager.defaultManager().removeItemAtPath(path)
+            } catch _ {
+            }
         }
         
-        /// 创建文件夹 withIntermediateDirectories 是否智能创建文件夹
-        NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil, error: nil)
+        do {
+            /// 创建文件夹 withIntermediateDirectories 是否智能创建文件夹
+            try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
+        } catch _ {
+        }
         return path
     }()
     
     
-private static var imageCachePath = "com.itheima.imagecache"
+private static var imageCachePath = "com.baidu.imagecache"
 private static let errorDomain = "com.dsxlocal.error"
     
     ///  请求 JSON
     ///
-    ///  :param: method     HTTP 访问方法
-    ///  :param: urlString  urlString
-    ///  :param: params     可选参数字典
-    ///  :param: completion 完成回调
+    ///  - parameter method:     HTTP 访问方法
+    ///  - parameter urlString:  urlString
+    ///  - parameter params:     可选参数字典
+    ///  - parameter completion: 完成回调
      func requestJSON(method: HTTPMethod, _ urlString: String, _ params: [String: String]?, _ completion: Completion) {
         
         // 实例化
@@ -164,7 +165,7 @@ private static let errorDomain = "com.dsxlocal.error"
                     return
                 }
                 
-                let json:AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil)
+                let json:AnyObject? = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
                 
                 // 判断反序列化是否成功
                 if json == nil{
@@ -186,11 +187,11 @@ private static let errorDomain = "com.dsxlocal.error"
     
     ///  返回网络访问的请求
     ///
-    ///  :param: method    HTTP 访问方法
-    ///  :param: urlString urlString
-    ///  :param: params    可选参数字典
+    ///  - parameter method:    HTTP 访问方法
+    ///  - parameter urlString: urlString
+    ///  - parameter params:    可选参数字典
     ///
-    ///  :returns: 可选网络请求
+    ///  - returns: 可选网络请求
    private func request(method:HTTPMethod, _ urlString: String, _ params:[String:String]?) ->NSURLRequest?{
         
         if urlString.isEmpty{
@@ -227,9 +228,9 @@ private static let errorDomain = "com.dsxlocal.error"
     
     ///  生成查询字符串
     ///
-    ///  :param: params 可选字典
+    ///  - parameter params: 可选字典
     ///
-    ///  :returns: 拼接完成的字符串
+    ///  - returns: 拼接完成的字符串
    private func queryString(params: [String: String]?) -> String? {
         
         // 0. 判断参数
@@ -246,7 +247,7 @@ private static let errorDomain = "com.dsxlocal.error"
             array.append(str)
         }
         
-        return join("&", array)
+        return array.joinWithSeparator("&")
     }
     
     ///  公共的初始化函数，外部就能够调用了

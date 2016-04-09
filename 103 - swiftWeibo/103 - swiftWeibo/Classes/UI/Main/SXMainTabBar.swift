@@ -33,7 +33,7 @@ class SXMainTabBar: UITabBar {
         
         var index = 0
         
-        for view in self.subviews as![UIView]{
+        for view in self.subviews {
             if view is UIControl && !(view is  UIButton){
                 let r = CGRectMake(CGFloat(index) * w, 0, w, h)
                 
@@ -68,7 +68,7 @@ class SXMainTabBar: UITabBar {
         }()
     
     func clickCompose(){
-        println("发微博")
+        print("发微博")
         if composedButtonClicked != nil{
             composedButtonClicked!()
         }

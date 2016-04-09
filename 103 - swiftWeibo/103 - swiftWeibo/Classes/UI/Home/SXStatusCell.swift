@@ -149,12 +149,12 @@ extension SXStatusCell:UICollectionViewDataSource,UICollectionViewDelegate{
     /**
     计算行高的方法
     
-    :returns: 图片大小和背景view的大小
+    - returns: 图片大小和背景view的大小
     */
     func calsPictureViewSize() -> (itemSize:CGSize,viewSize:CGSize){
         
         let s:CGFloat = 90
-        var itemSize = CGSizeMake(s, s)
+        let itemSize = CGSizeMake(s, s)
         
         var viewSize = CGSizeZero
         

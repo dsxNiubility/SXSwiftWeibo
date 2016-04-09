@@ -25,10 +25,10 @@ class NetworkManager {
     /**
     请求JSON
     
-    :param: method     GET 还是 POST
-    :param: urlString  URLstr
-    :param: params     可选参数列表
-    :param: completion 完成回调
+    - parameter method:     GET 还是 POST
+    - parameter urlString:  URLstr
+    - parameter params:     可选参数列表
+    - parameter completion: 完成回调
     */
     func requestJSON(method:HTTPMethod, _ urlString:String, _ params:[String:String]?, _ completion:Completion){
         
@@ -38,8 +38,8 @@ class NetworkManager {
     
     ///  异步下载网路图像
     ///
-    ///  :param: urlString  urlString
-    ///  :param: completion 完成回调
+    ///  - parameter urlString:  urlString
+    ///  - parameter completion: 完成回调
     func requestImage(urlString: String, _ completion: Completion) {
         
         net.requestImage(urlString, completion)
@@ -53,8 +53,8 @@ class NetworkManager {
     
     ///  下载多张图片
     ///
-    ///  :param: urls       图片 URL 数组
-    ///  :param: completion 所有图片下载完成后的回调
+    ///  - parameter urls:       图片 URL 数组
+    ///  - parameter completion: 所有图片下载完成后的回调
     func downloadImages(urls: [String], _ completion: Completion) {
         
         net.downloadImages(urls, completion)
@@ -62,8 +62,8 @@ class NetworkManager {
     
     ///  下载图像并且保存到沙盒
     ///
-    ///  :param: urlString  urlString
-    ///  :param: completion 完成回调
+    ///  - parameter urlString:  urlString
+    ///  - parameter completion: 完成回调
     func downloadImage(urlString: String, _ completion: Completion) {
         
         net.downloadImage(urlString, completion)

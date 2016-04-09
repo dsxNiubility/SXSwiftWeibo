@@ -48,6 +48,6 @@ class SXMainTabBarController: UITabBarController {
     }
     
     deinit{
-        println("主控制器被释放")
+        print("主控制器被释放")
     }
 }

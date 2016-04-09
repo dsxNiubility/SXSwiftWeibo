@@ -28,7 +28,7 @@ class AccessTokenTests: XCTestCase {
             "uid": 3697667837]
         
         var token = AccessToken(dict: dict)
-        println(token.isExpired)
+        print(token.isExpired)
         
         dict = ["access_token": "2.00p_CPCE06bBTR613268deb0yyv5oD",
             "expires_in": 0,
@@ -36,7 +36,7 @@ class AccessTokenTests: XCTestCase {
             "uid": 3697667837]
         
         token = AccessToken(dict: dict)
-        println(token.isExpired)
+        print(token.isExpired)
         
         dict = ["access_token": "2.00p_CPCE06bBTR613268deb0yyv5oD",
             "expires_in": -1,
@@ -44,7 +44,7 @@ class AccessTokenTests: XCTestCase {
             "uid": 3697667837]
         
         token = AccessToken(dict: dict)
-        println(token.isExpired)
+        print(token.isExpired)
     }
 
     func testExample() {

@@ -1,11 +1,3 @@
-//
-//  StatusesData.swift
-//  HMWeibo04
-//
-//  Created by apple on 15/3/5.
-//  Copyright (c) 2015年 heima. All rights reserved.
-//
-
 import UIKit
 
 /**
@@ -38,7 +30,7 @@ class StatusesData: NSObject, J2MProtocol {
         if maxId > 0 {
             // 检查本地数据，如果存在本地数据，直接返回
             if let result = checkLocalData(maxId) {
-                println("加载本地数据...")
+                print("加载本地数据...")
                 // 从本地加载了数据，直接回调
                 let data = StatusesData()
                 data.statuses = result
@@ -62,8 +54,8 @@ class StatusesData: NSObject, J2MProtocol {
                 }
                 
                 // 字典转模型
-                var modelTools = SXSwiftJ2M.sharedManager
-                var data = modelTools.swiftObjWithDict(result as! NSDictionary, cls: StatusesData.self) as? StatusesData
+                let modelTools = SXSwiftJ2M.sharedManager
+                let data = modelTools.swiftObjWithDict(result as! NSDictionary, cls: StatusesData.self) as? StatusesData
                 
                 /// 保存微博数组
                 self.saveStatusData(data?.statuses)
@@ -100,7 +92,7 @@ class StatusesData: NSObject, J2MProtocol {
             return nil
         }
         
-            println("应该加载本地数据")
+            print("应该加载本地数据")
             // TODO: 生成应用程序需要的结果集合直接返回即可！
             // 结果集合中包含微博的数组，同时，需要把分散保存在数据表中的数据，再次整合！
             let resultSQL = "SELECT id, text, source, created_at, reposts_count, \n" +
@@ -130,7 +122,7 @@ class StatusesData: NSObject, J2MProtocol {
     class func updateRefreshState(maxId: Int) {
         let sql = "UPDATE T_Status SET refresh = 1 \n" +
         "WHERE id > \(maxId);"
-        println(maxId)
+        print(maxId)
         SQLite.sharedSQLite.execSQL(sql)
     }
     
@@ -151,7 +143,7 @@ class StatusesData: NSObject, J2MProtocol {
             if !StatusPictureURL.savePictures(s.id, pictures: s.pic_urls) {
                 
                 /// 一旦出现错误 就回滚 放弃这一轮的所有操作
-                println("配图插入出现错误")
+                print("配图插入出现错误")
                 SQLite.sharedSQLite.execSQL("ROLLBACK TRANSACTION")
                 break
             }
@@ -159,7 +151,7 @@ class StatusesData: NSObject, J2MProtocol {
             /// 用户记录保存
             if s.user != nil{
                 if !s.user!.insertDB() {
-                    println("用户数据插入出现错误")
+                    print("用户数据插入出现错误")
                     SQLite.sharedSQLite.execSQL("ROLLBACK TRANSACTION")
                     break
                 }
@@ -167,7 +159,7 @@ class StatusesData: NSObject, J2MProtocol {
             
             // 3. 微博记录
             if !s.insertDB() {
-                println("插入微博数据错误")
+                print("插入微博数据错误")
                 SQLite.sharedSQLite.execSQL("ROLLBACK TRANSACTION")
                 break
             }
@@ -177,7 +169,7 @@ class StatusesData: NSObject, J2MProtocol {
                 // 存在转发微博
                 // 保存转发微博
                 if !s.retweeted_status!.insertDB() {
-                    println("插入转发微博数据错误")
+                    print("插入转发微博数据错误")
                     SQLite.sharedSQLite.execSQL("ROLLBACK TRANSACTION")
                     break
                 }
@@ -194,9 +186,9 @@ class StatusesData: NSObject, J2MProtocol {
     
     ///  取出给定的微博数据中所有图片的 URL 数组
     ///
-    ///  :param: statuses 微博数据数组，可以为空
+    ///  - parameter statuses: 微博数据数组，可以为空
     ///
-    ///  :returns: 微博数组中的 url 完整数组，可以为空
+    ///  - returns: 微博数组中的 url 完整数组，可以为空
     class func pictureURLs(statuses: [Status]?) -> [String]? {
         
         // 如果数据为空直接返回
@@ -264,7 +256,7 @@ class Status: NSObject, J2MProtocol {
     var largeUrls: [String]? {
         get {
             // 可以使用 kvc 直接拿值
-            var urls = self.valueForKeyPath("pictureUrls.large_pic") as? NSArray
+            let urls = self.valueForKeyPath("pictureUrls.large_pic") as? NSArray
             return urls as? [String]
         }
     }
@@ -351,7 +343,7 @@ class StatusPictureURL: NSObject {
     ///  缩略图 URL
     var thumbnail_pic: String?{
         didSet{
-            var str = thumbnail_pic!
+            let str = thumbnail_pic!
             large_pic = str.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
         }
     }

@@ -33,7 +33,7 @@ class SimpleNetworkTests: XCTestCase {
         let expectation = expectationWithDescription(urlString)
         
         net.requestJSON(.GET, urlString, nil) { (result, error) -> () in
-            println(result)
+            print(result)
             
             // 2. 标记"期望达成"
             expectation.fulfill()
@@ -49,7 +49,7 @@ class SimpleNetworkTests: XCTestCase {
     /// 测试错误的网络请求
     func testErrorNetRequest(){
         net.requestJSON(.GET, "", nil) { (result, error) -> () in
-            println(error)
+            print(error)
             XCTAssertNotNil(error, "必须要返回错误")
         }
     }
@@ -93,12 +93,12 @@ class SimpleNetworkTests: XCTestCase {
         let net = SimpleNetwork()
         
         XCTAssertNil(net.queryString(nil), "查询参数不能为空")
-        println(net.queryString(["name":"zhangsan"])!)
+        print(net.queryString(["name":"zhangsan"])!)
         XCTAssert(net.queryString(["name":"zhangsan"])! == "name=zhangsan", "单个参数拼串不正确")
-        println(net.queryString(["name":"zhangsan","title":"BOSS","school":"stanford"])!)
+        print(net.queryString(["name":"zhangsan","title":"BOSS","school":"stanford"])!)
         XCTAssert(net.queryString(["name":"zhangsan","title":"BOSS","school":"stanford"])! == "title=BOSS&school=stanford&name=zhangsan", "多个参数拼串不正确")
         // 测试百分号转义
-        println(net.queryString(["name": "zhangsan", "book": "ios 8.0"])!)
+        print(net.queryString(["name": "zhangsan", "book": "ios 8.0"])!)
         XCTAssert(net.queryString(["name": "zhangsan", "book": "ios 8.0"])! == "book=ios%208.0&name=zhangsan")
         
     }

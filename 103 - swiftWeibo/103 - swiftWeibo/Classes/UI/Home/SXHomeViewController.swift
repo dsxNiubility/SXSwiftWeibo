@@ -23,7 +23,7 @@ class SXHomeViewController: UITableViewController {
     /// 上拉视图懒加载
     lazy var pullupView:RefreshView = {
         /// 转，不显示箭头
-        return RefreshView.refreshView(isLoading: true)
+        return RefreshView.refreshView(true)
     }()
     
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ class SXHomeViewController: UITableViewController {
         
         weak var weakSelf = self
         pullupView.addPullupOberserver(tableView){
-            println("上啦加载数据啦！！！！")
+            print("上啦加载数据啦！！！！")
             
             /// 获取到maxId
             if let maxId = weakSelf?.statusData?.statuses?.last?.id{
@@ -54,7 +54,7 @@ class SXHomeViewController: UITableViewController {
     }
     
     deinit {
-        println("home视图控制器被释放!!!!!!")
+        print("home视图控制器被释放!!!!!!")
         
         // 主动释放加载刷新视图对tableView的观察
         tableView.removeObserver(pullupView, forKeyPath: "contentOffset")
@@ -66,18 +66,18 @@ class SXHomeViewController: UITableViewController {
     }
     
     func loadData(maxId:Int){
-        println("加载数据")
+        print("加载数据")
         
         refreshControl?.beginRefreshing()
         
         weak var weakSelf = self
         
-        StatusesData.loadStatus(maxId:maxId) { (data, error) -> () in
+        StatusesData.loadStatus(maxId) { (data, error) -> () in
             
             weakSelf!.refreshControl?.endRefreshing()
             
             if error != nil{
-                println(error)
+                print(error)
                 SVProgressHUD.showInfoWithStatus("网络繁忙请重试")
             }
             if data != nil{
@@ -87,7 +87,7 @@ class SXHomeViewController: UITableViewController {
                     weakSelf?.statusData = data
                     weakSelf?.tableView.reloadData()
                 }else {
-                    println("加载到了新的数据 进行数据拼接")
+                    print("加载到了新的数据 进行数据拼接")
                     
                     let list = weakSelf!.statusData!.statuses! + data!.statuses!
                     weakSelf?.statusData?.statuses = list

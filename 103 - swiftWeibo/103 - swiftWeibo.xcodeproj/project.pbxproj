@@ -24,7 +24,6 @@
 		1D5C4E741AB1F092006AA087 /* SXComposeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C4E731AB1F092006AA087 /* SXComposeTextView.swift */; };
 		1D6175551AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
 		1D6175561AA5DC1B00AD0A64 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */; };
-		1DB1D3081AB545F000CB5FFF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB1D3071AB545F000CB5FFF /* libsqlite3.dylib */; };
 		1DB1D30B1AB5461300CB5FFF /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB1D3091AB5461300CB5FFF /* SQLite.swift */; };
 		1DB1D30E1AB5463C00CB5FFF /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB1D30D1AB5463C00CB5FFF /* String+Path.swift */; };
 		1DB4138D1AA4B3C20031A34F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */; };
@@ -48,6 +47,7 @@
 		1DBD261B1AA877D400C90E5A /* StatusesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD26191AA877D400C90E5A /* StatusesData.swift */; };
 		1DBD261C1AA877D400C90E5A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD261A1AA877D400C90E5A /* UserInfo.swift */; };
 		1DBD261E1AA8846200C90E5A /* String+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBD261D1AA8846200C90E5A /* String+Hash.swift */; };
+		1DC75BB11CB8B2550002CA4D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC75BB01CB8B2550002CA4D /* libsqlite3.tbd */; };
 		1DCF98FF1AA4278D00C2EFF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF98FE1AA4278D00C2EFF0 /* AppDelegate.swift */; };
 		1DCF99061AA4278D00C2EFF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DCF99051AA4278D00C2EFF0 /* Images.xcassets */; };
 		1DCF99151AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF99141AA4278E00C2EFF0 /* _03___swiftWeiboTests.swift */; };
@@ -87,7 +87,6 @@
 		1D5C4E711AB1EF29006AA087 /* SXEmoteTextAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXEmoteTextAttachment.swift; sourceTree = "<group>"; };
 		1D5C4E731AB1F092006AA087 /* SXComposeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXComposeTextView.swift; sourceTree = "<group>"; };
 		1D6175541AA5DC1B00AD0A64 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
-		1DB1D3071AB545F000CB5FFF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1DB1D3091AB5461300CB5FFF /* SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
 		1DB1D30D1AB5463C00CB5FFF /* String+Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
 		1DB4138C1AA4B3C20031A34F /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -108,6 +107,7 @@
 		1DBD26191AA877D400C90E5A /* StatusesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesData.swift; sourceTree = "<group>"; };
 		1DBD261A1AA877D400C90E5A /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		1DBD261D1AA8846200C90E5A /* String+Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Hash.swift"; sourceTree = "<group>"; };
+		1DC75BB01CB8B2550002CA4D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1DCF98F91AA4278D00C2EFF0 /* 103 - swiftWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "103 - swiftWeibo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF98FD1AA4278D00C2EFF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DCF98FE1AA4278D00C2EFF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DB1D3081AB545F000CB5FFF /* libsqlite3.dylib in Frameworks */,
+				1DC75BB11CB8B2550002CA4D /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +174,7 @@
 		1DCF98F01AA4278D00C2EFF0 = {
 			isa = PBXGroup;
 			children = (
-				1DB1D3071AB545F000CB5FFF /* libsqlite3.dylib */,
+				1DC75BB01CB8B2550002CA4D /* libsqlite3.tbd */,
 				1DCF98FB1AA4278D00C2EFF0 /* 103 - swiftWeibo */,
 				1DCF99111AA4278E00C2EFF0 /* 103 - swiftWeiboTests */,
 				1DCF98FA1AA4278D00C2EFF0 /* Products */,
@@ -405,6 +405,8 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SX;
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = shangxianDante;
 				TargetAttributes = {

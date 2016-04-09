@@ -21,7 +21,7 @@ class AccessToken:NSObject,NSCoding{
     var expires_in :NSNumber?{
         didSet{
             expiresDate = NSDate(timeIntervalSinceNow: expires_in!.doubleValue)
-            println("过期时间为--：\(expiresDate)")
+            print("过期时间为--：\(expiresDate)")
         }
     }
     
@@ -37,14 +37,14 @@ class AccessToken:NSObject,NSCoding{
     /// 传入字典的构造方法
     init(dict:NSDictionary){
         super.init()
-        self.setValuesForKeysWithDictionary(dict as [NSObject:AnyObject])
+        self.setValuesForKeysWithDictionary(dict as [NSObject : AnyObject] as [NSObject:AnyObject])
     }
     
     /// 将数据保存到沙盒
     func saveAccessToken(){
         NSKeyedArchiver.archiveRootObject(self, toFile: AccessToken.tokenPath())
         
-        println("accesstoken地址是" + AccessToken.tokenPath())
+        print("accesstoken地址是" + AccessToken.tokenPath())
     }
     
     /// 从沙盒读取 token 数据
@@ -55,7 +55,7 @@ class AccessToken:NSObject,NSCoding{
     /// 返回保存的沙盒路径
     class func tokenPath() -> String {
         var path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last as!String
-        path = path.stringByAppendingPathComponent("SXWeiboToken.plist")
+        path = (path as NSString).stringByAppendingPathComponent("SXWeiboToken.plist")
         
         return path
     }
@@ -70,7 +70,7 @@ class AccessToken:NSObject,NSCoding{
         encode.encodeInteger(uid, forKey: "uid")
     }
     
-    required init(coder decoder:NSCoder){
+    required init?(coder decoder:NSCoder){
         access_token = decoder.decodeObject() as?String
         expiresDate = decoder.decodeObject() as?NSDate
         uid = decoder.decodeIntegerForKey("uid")

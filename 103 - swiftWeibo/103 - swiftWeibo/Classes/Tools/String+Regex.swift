@@ -21,7 +21,7 @@ extension String {
         // 定义正则表达式
         // DotMatchesLineSeparators 使用 . 可以匹配换行符
         // CaseInsensitive 忽略大小写
-        let regex = NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive | NSRegularExpressionOptions.DotMatchesLineSeparators, error: nil)!
+        let regex = try! NSRegularExpression(pattern: pattern, options: [NSRegularExpressionOptions.CaseInsensitive, NSRegularExpressionOptions.DotMatchesLineSeparators])
         
         // 匹配文字
         // firstMatchInString 在字符串中查找第一个匹配的内容
@@ -34,7 +34,7 @@ extension String {
         // 不能直接使用 String.length，包含UNICODE的编码长度，会出现数组越界
         //        let length = self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
         
-        if let result = regex.firstMatchInString(self, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, length)) {
+        if let result = regex.firstMatchInString(self, options: NSMatchingOptions(), range: NSMakeRange(0, length)) {
             
             // 匹配到内容
             return text.substringWithRange(result.rangeAtIndex(1))
@@ -61,18 +61,18 @@ extension String {
         let pattern = "\\[(.*?)\\]"
         
         // 2. regex
-        let regex = NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive | NSRegularExpressionOptions.DotMatchesLineSeparators, error: nil)!
+        let regex = try! NSRegularExpression(pattern: pattern, options: [NSRegularExpressionOptions.CaseInsensitive, NSRegularExpressionOptions.DotMatchesLineSeparators])
         
         let text = self as NSString
         // 3. 多个匹配，[NSTextCheckingResult]
-        let checkingResults = regex.matchesInString(self, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, text.length))
+        let checkingResults = regex.matchesInString(self, options: NSMatchingOptions(), range: NSMakeRange(0, text.length))
         
         // !!! 结果字符串
-        var attributeString = NSMutableAttributedString(string: self)
+        let attributeString = NSMutableAttributedString(string: self)
         
         // 4. 倒着遍历匹配结果
         for var i = checkingResults.count - 1; i >= 0; i-- {
-            let result = checkingResults[i] as! NSTextCheckingResult
+            let result = checkingResults[i] 
             
             // 表情符号的文字
             let str = text.substringWithRange(result.rangeAtIndex(0))

@@ -1,11 +1,3 @@
-//
-//  SimpleNetwork.swift
-//  SimpleNetwork
-//
-//  Created by apple on 15/3/2.
-//  Copyright (c) 2015年 heima. All rights reserved.
-//
-
 import Foundation
 
 ///  常用的网络访问方法
@@ -22,7 +14,7 @@ public class SimpleNetwork {
 //        }
 //    }
     public func demo(){
-        println("demo")
+        print("demo")
     }
     
 //    func requestJSON(method: HTTPMethod, _ urlString: String, params: [String: String]?, completion:((result: AnyObject?, error: NSError?) -> ())) {
@@ -36,10 +28,10 @@ static let errorDomain = "com.dsxlocal.error"
     
     ///  请求 JSON
     ///
-    ///  :param: method     HTTP 访问方法
-    ///  :param: urlString  urlString
-    ///  :param: params     可选参数字典
-    ///  :param: completion 完成回调
+    ///  - parameter method:     HTTP 访问方法
+    ///  - parameter urlString:  urlString
+    ///  - parameter params:     可选参数字典
+    ///  - parameter completion: 完成回调
     public func requestJSON(method: HTTPMethod, _ urlString: String, _ params: [String: String]?, completion: Completion) {
         
         // 实例化
@@ -55,7 +47,7 @@ static let errorDomain = "com.dsxlocal.error"
                     return
                 }
                 
-                let json:AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil)
+                let json:AnyObject? = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
                 
                 // 判断反序列化是否成功
                 if json == nil{
@@ -77,11 +69,11 @@ static let errorDomain = "com.dsxlocal.error"
     
     ///  返回网络访问的请求
     ///
-    ///  :param: method    HTTP 访问方法
-    ///  :param: urlString urlString
-    ///  :param: params    可选参数字典
+    ///  - parameter method:    HTTP 访问方法
+    ///  - parameter urlString: urlString
+    ///  - parameter params:    可选参数字典
     ///
-    ///  :returns: 可选网络请求
+    ///  - returns: 可选网络请求
     func request(method:HTTPMethod, _ urlString: String, _ params:[String:String]?) ->NSURLRequest?{
         
         if urlString.isEmpty{
@@ -118,9 +110,9 @@ static let errorDomain = "com.dsxlocal.error"
     
     ///  生成查询字符串
     ///
-    ///  :param: params 可选字典
+    ///  - parameter params: 可选字典
     ///
-    ///  :returns: 拼接完成的字符串
+    ///  - returns: 拼接完成的字符串
     func queryString(params: [String: String]?) -> String? {
         
         // 0. 判断参数
@@ -137,7 +129,7 @@ static let errorDomain = "com.dsxlocal.error"
             array.append(str)
         }
         
-        return join("&", array)
+        return array.joinWithSeparator("&")
     }
     
     ///  公共的初始化函数，外部就能够调用了

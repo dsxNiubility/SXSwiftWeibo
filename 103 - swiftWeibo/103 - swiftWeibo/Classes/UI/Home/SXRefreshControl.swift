@@ -12,7 +12,7 @@ class SXRefreshControl: UIRefreshControl {
     
     lazy var refreshV : RefreshView = {
         /// 显示箭头，不转
-        return RefreshView.refreshView(isLoading: false)
+        return RefreshView.refreshView(false)
     }()
     
     override func willMoveToWindow(newWindow: UIWindow?) {
@@ -29,7 +29,7 @@ class SXRefreshControl: UIRefreshControl {
     
     /// 销毁观察者
     deinit{
-        println("SXRefreshControl   888")
+        print("SXRefreshControl   888")
         self.removeObserver(self, forKeyPath: "frame")
     }
     
@@ -37,7 +37,7 @@ class SXRefreshControl: UIRefreshControl {
     var isLoading = false
     /// 旋转提示图标记
     var isRotateTip = false
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
         if self.frame.origin.y > 0{
             return
@@ -164,7 +164,7 @@ class RefreshView: UIView {
     }
     
     deinit{
-        println("RefreshView   888")
+        print("RefreshView   888")
 //        parentView!.removeObserver(self, forKeyPath: "contentOffset")
     }
     
@@ -174,7 +174,7 @@ class RefreshView: UIView {
     var PullupLoadData:(()->())?
     
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
         /// 界面首次加载时，这里不显示上啦
         if self.frame.origin.y == 0{

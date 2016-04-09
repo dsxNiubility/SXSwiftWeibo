@@ -1,11 +1,3 @@
-//
-//  StringHash.swift
-//  黑马微博
-//
-//  Created by 刘凡 on 15/2/21.
-//  Copyright (c) 2015年 joyios. All rights reserved.
-//
-
 /// 注意：要使用本分类，需要在 bridge.h 中添加以下头文件导入
 /// #import <CommonCrypto/CommonCrypto.h>
 /// 如果使用了单元测试，项目 和 测试项目的 bridge.h 中都需要导入
@@ -21,7 +13,7 @@ extension String  {
         
         CC_MD5(str!, strLen, result)
         
-        var hash = NSMutableString()
+        let hash = NSMutableString()
         for i in 0..<digestLen {
             hash.appendFormat("%02x", result[i])
         }

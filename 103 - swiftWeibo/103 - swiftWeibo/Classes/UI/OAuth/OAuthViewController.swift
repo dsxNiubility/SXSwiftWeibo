@@ -1,13 +1,5 @@
-//
-//  OAuthViewController.swift
-//  02-TDD
-//
-//  Created by apple on 15/2/28.
-//  Copyright (c) 2015年 heima. All rights reserved.
-//
-
 import UIKit
-import SwiftJ2M
+import SXSwiftJ2M
 
 // 定义全局常量
 let WB_Login_Successed_Notification = "WB_Login_Successed_Notification"
@@ -41,26 +33,26 @@ class OAuthViewController: UIViewController {
 extension OAuthViewController: UIWebViewDelegate {
     
     func webViewDidStartLoad(webView: UIWebView) {
-        println(__FUNCTION__)
+        print(__FUNCTION__)
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        println(__FUNCTION__)
+        print(__FUNCTION__)
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        println(__FUNCTION__)
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        print(__FUNCTION__)
     }
     
     /// 页面重定向
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        println(request.URL)
+        print(request.URL)
         
         let result = continueWithCode(request.URL!)
         
         if let code = result.code {
-            println("可以换 accesstoke \(code)")
+            print("可以换 accesstoke \(code)")
  
             let params = ["client_id": WB_Client_ID,
             "client_secret": WB_Client_Secret,
@@ -70,7 +62,7 @@ extension OAuthViewController: UIWebViewDelegate {
             
             let net = NetworkManager.sharedManager
             net.requestJSON(.POST, "https://api.weibo.com/oauth2/access_token", params) { (result, error) -> () in
-                println(result)
+                print(result)
                 
                 let token = AccessToken(dict: result as! NSDictionary)
                 token.saveAccessToken()
@@ -82,7 +74,7 @@ extension OAuthViewController: UIWebViewDelegate {
             
         }
         if !result.load {
-            println(request.URL)
+            print(request.URL)
            
             if result.reloadPage{
                 SVProgressHUD.showInfoWithStatus("真的要取消么", maskType: SVProgressHUDMaskType.Black)
@@ -98,7 +90,7 @@ extension OAuthViewController: UIWebViewDelegate {
     func continueWithCode(url: NSURL) -> (load: Bool, code: String?, reloadPage: Bool) {
         
         // 1. 将url转换成字符串
-        let urlString = url.absoluteString!
+        let urlString = url.absoluteString
         
         // 2. 如果不是微博的 api 地址，都不加载
         if !urlString.hasPrefix(WB_API_URL_String) {

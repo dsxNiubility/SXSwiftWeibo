@@ -173,7 +173,7 @@ extension SXComposeViewController:UITextViewDelegate{
         }
         
         if text == "\n"{
-            println("回车键")
+            print("回车键")
         }
         
         let len1 = (self.textView.fullText() as NSString).length

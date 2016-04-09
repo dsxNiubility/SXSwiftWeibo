@@ -14,7 +14,7 @@ class SXEmoteTextAttachment: NSTextAttachment {
     
     /// 返回一个 属性字符串
     class func attributeString(emoticon: Emoticon, height: CGFloat) -> NSAttributedString {
-        var attachment = SXEmoteTextAttachment()
+        let attachment = SXEmoteTextAttachment()
         attachment.image = UIImage(contentsOfFile: emoticon.imagePath!)
         attachment.emoteString = emoticon.chs
         

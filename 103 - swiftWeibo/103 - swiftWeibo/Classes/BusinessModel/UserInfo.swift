@@ -1,11 +1,3 @@
-//
-//  UserInfo.swift
-//  HMWeibo04
-//
-//  Created by apple on 15/3/5.
-//  Copyright (c) 2015年 heima. All rights reserved.
-//
-
 import UIKit
 
 ///  用户信息
@@ -97,7 +89,7 @@ class UserInfo: NSObject {
         "(\(id), '\(screen_name!)', '\(name!)', '\(profile_image_url!)', '\(avatar_large!)', '\(created_at!)', \(Int(verified)), \(mbrank))"
         
         // 打印出来的 SQL 可以直接粘贴进行调试
-        println(sql)
+        print(sql)
         
         return SQLite.sharedSQLite.execSQL(sql)
     }

@@ -169,6 +169,8 @@
 		1DF7E2851AA7616A00D77333 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = shangxianDante;
 				TargetAttributes = {
@@ -411,6 +413,7 @@
 				1DF7E2A61AA7616A00D77333 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1DF7E2A71AA7616A00D77333 /* Build configuration list for PBXNativeTarget "SwiftJ2MTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +422,7 @@
 				1DF7E2A91AA7616A00D77333 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -13,7 +13,7 @@ import Foundation
     /**
     自定义的类型映射表
     
-    :returns: 返回[属性名：自定义对象名称]
+    - returns: 返回[属性名：自定义对象名称]
     */
     static func customeClassMapping()->[String:String]?
 }
@@ -27,10 +27,10 @@ public class SXSwiftJ2M {
     /**
     使用字典转模型
     
-    :param: dict 数据字典
-    :param: cls  模型的类
+    - parameter dict: 数据字典
+    - parameter cls:  模型的类
     
-    :returns: 实例化类的对象
+    - returns: 实例化类的对象
     */
    public func swiftObjWithDict(dict:NSDictionary,cls:AnyClass) ->AnyObject?{
         
@@ -38,7 +38,7 @@ public class SXSwiftJ2M {
         let dictInfo = GetAllModelInfo(cls)
         
         /// 实例化对象
-        var obj:AnyObject = cls.alloc()
+        let obj:AnyObject = cls.alloc()
     
         autoreleasepool{
         
@@ -85,10 +85,10 @@ public class SXSwiftJ2M {
     /**
     将数组转化成模型数组
     
-    :param: array 数组
-    :param: cls   模型类
+    - parameter array: 数组
+    - parameter cls:   模型类
     
-    :returns: 模型数组
+    - returns: 模型数组
     */
     public func swiftObjWithArray(array:NSArray,cls:AnyClass) ->AnyObject?{
         
@@ -120,9 +120,9 @@ public class SXSwiftJ2M {
     /**
     获取模型类的所有信息
     
-    :param: cls 模型类
+    - parameter cls: 模型类
     
-    :returns: 完整信息字典
+    - returns: 完整信息字典
     */
     func GetAllModelInfo(cls:AnyClass)->[String:String]{
         
@@ -170,7 +170,7 @@ public class SXSwiftJ2M {
         
         let ivars = class_copyIvarList(cls, &count)
         
-        println("有 \(count) 个属性")
+        print("有 \(count) 个属性")
         
         var dictInfo = [String:String]()
         
@@ -199,7 +199,7 @@ public class SXSwiftJ2M {
 
         let properties = class_copyPropertyList(cls, &count)
         
-        println("有 \(count) 个属性")
+        print("有 \(count) 个属性")
         
         for i in 0..<count{
             /// 必须再强转成Int否则不能用来做下标
@@ -211,7 +211,7 @@ public class SXSwiftJ2M {
             let ctype = property_getAttributes(property)
             let type = String.fromCString(ctype)!
             
-            println(name + "--------" + type)
+            print(name + "--------" + type)
         }
         /// 释放
         free(properties)
@@ -226,7 +226,7 @@ public class SXSwiftJ2M {
         
         let ivars = class_copyIvarList(cls, &count)
         
-        println("有 \(count) 个属性")
+        print("有 \(count) 个属性")
         
         for i in 0..<count{
             /// 必须再强转成Int否则不能用来做下标
@@ -238,7 +238,7 @@ public class SXSwiftJ2M {
             let ctype = ivar_getTypeEncoding(ivar)
             let type = String.fromCString(ctype)!
             
-            println(name + "--------" + type)
+            print(name + "--------" + type)
         }
         /// 释放
         free(ivars)
